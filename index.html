@@ -29,5 +29,16 @@
         <a href="/game/RulialSpace.html">rulial space game</a>
       </li>
     </ul>
+    <hr/>
+    <p>visitors: <span id="visitors"></span>, unique: <span id="unique"></span></p>
+    <script>
+      fetch(`https://synetic.goatcounter.com/counter/%2F.json`)
+        .then(res => res.json())
+        .then(data => {
+          document.querySelector('#visitors').textContent = data.count;
+          document.querySelector('#unique').textContent = data.count_unique;
+        });
+    </script>
+    
   </body>
 </html>
