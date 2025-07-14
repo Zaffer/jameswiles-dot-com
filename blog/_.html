@@ -13,32 +13,29 @@
 <body>
     <header>
         <nav>
-            <a href="/blog.html">James Wiles Blog</a>
+            <a href="/">James Wiles Blog</a>
         </nav>
     </header>
-    <main id="content">
-        <pre id="markdown" style="display: none">
+    <main id="content"></main>
+    <pre id="markdown" style="display: none">
 # Title
+*James K. Wiles | 2025-01-01*
 
 Paragraph.
 
 - Lists
 - **Bold** and *italic* text
-- [Links](https://example.com)
+- [Links](https://jameswiles.com/)
 - Images: ![Alt text](/blog/_/image.png)
 
 More text...
-        </pre>
-    </main>
+    </pre>
     <script>
         document.getElementById('content').innerHTML = marked.parse(document.getElementById('markdown').textContent);
     </script>
     <footer>
         <p>visitors: <span id="visitors"></span></p>
     </footer>
-    <script>
-        document.getElementById('content').innerHTML = marked.parse(document.getElementById('markdown').textContent);
-    </script>
     <script>
         fetch(`https://synetic.goatcounter.com/counter/${encodeURIComponent(location.pathname)}.json`)
             .then(res => res.json()).then(data => document.querySelector('#visitors').textContent = data.count);
