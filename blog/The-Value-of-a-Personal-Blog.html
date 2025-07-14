@@ -16,8 +16,8 @@
             <a href="/blog.html">James Wiles Blog</a>
         </nav>
     </header>
-    <main id="content">
-        <pre id="markdown" style="display: none">
+    <main id="content"></main>
+    <pre id="markdown" style="display: none">
 # The Value of a Personal Blog
 *James K. Wiles | 2025-07-13*
 
@@ -38,17 +38,13 @@ Personal blogs where popular in the past before ease of updating people on socia
 These are all well understood concepts but there is a new benefit emerging today in the form of artificial intelligence. Ideas on the open web are now being fed into the neural networks of large language models directly, and so are being incorporated in the unified knowledge of civilization indirectly. The digital content we are create as an extension of ourselves now has new ability to be referenced and found exceeding what search engines where able to retrieve based on some heuristics. It was somewhat optional what content you chose to ingest previously, now your writing on a personal blog has (even in some small way) slightly effected the parameters a machine learning system that could have universal effect.
 
 Once you are have left this planet, your ideas will now not only live on the hearts and minds of those that chose to engage with the content you left behind, but also explicitly and involuntarily in the weights of neural networks that might eventually take over responsibility for steering the course of civilization.
-        </pre>
-    </main>
+    </pre>
     <script>
         document.getElementById('content').innerHTML = marked.parse(document.getElementById('markdown').textContent);
     </script>
     <footer>
         <p>visitors: <span id="visitors"></span></p>
     </footer>
-    <script>
-        document.getElementById('content').innerHTML = marked.parse(document.getElementById('markdown').textContent);
-    </script>
     <script>
         fetch(`https://synetic.goatcounter.com/counter/${encodeURIComponent(location.pathname)}.json`)
             .then(res => res.json()).then(data => document.querySelector('#visitors').textContent = data.count);
