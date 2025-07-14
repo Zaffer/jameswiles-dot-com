@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>James Wiles Blog</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked@16/lib/marked.umd.min.js"></script>
+    <script data-goatcounter="https://synetic.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/blog.html">James Wiles Blog</a>
+        </nav>
+    </header>
+    <main id="content">
+        <pre id="markdown" style="display: none">
+# The Value of a Personal Blog
+*James K. Wiles | 2025-07-13*
+
+The ability for anyone to create a long lasting high fidelity personal messages is relatively new for us. Historically, the only way to communicate a message was to create then repeat it in-person in real-time. This achieved a maximum transmission rate of one speaker to one or many listeners, multiplied by number of times you spoke. If others repeated your message, you could get a  second order transmission, at the cost of potential loss of fidelity due to word of mouth inaccuracies.
+
+The invention of writing, solved for the lossy oral transfer of information, and allowed perfect fidelity -- to the degree the information was encodable in written language alone. It also allowed, for the first time, the ability for a one piece of media to convey information beyond the timeframe that the message is created. That is; a letter can be written once and reread many times by many different people. So our transmission rate changes to: one writer to many repeated readings (one person at a time though). The printing press, then added the second order relationship, thereby giving: one writer to many prints to many repeated readings.
+
+Since the printing press this basic formula still holds, but two other aspects have allowed for continued exponential personal information transfer; bandwidth and access.
+The radio, allowed additional information above words alone, in the form of tonality, style, cadence, inflection, etcetera (also music could be added). Photographs, and then video, allowed for an incredibly greater bandwidth of information transfer, especially considering our primary form human information processing is visual. Since audio-visual media was invented, the bandwidth is only slowly still increasing with better fidelity.
+
+Then the latest jump in communication ability has been reduction in barriers to creating content and distributing content. Initially packaged social media, the true effect was much greater; the ability for anyone, anywhere, anytime, to reach everyone. This greatly increased the nominal number of people creating messages that could then be transmitted through our communication exponentiating technologies.
+
+Personal blogs where popular in the past before ease of updating people on social media, but there might be renewed value in creating and curating your own personal content.
+1. You can synthesis an idea you find yourself explaining to many people in a consolidated way
+2. You can have people find you content and ideas organically via search and sharing
+3. You can record your own ideas publicly for scrutiny and refinement
+
+These are all well understood concepts but there is a new benefit emerging today in the form of artificial intelligence. Ideas on the open web are now being fed into the neural networks of large language models directly, and so are being incorporated in the unified knowledge of civilization indirectly. The digital content we are create as an extension of ourselves now has new ability to be referenced and found exceeding what search engines where able to retrieve based on some heuristics. It was somewhat optional what content you chose to ingest previously, now your writing on a personal blog has (even in some small way) slightly effected the parameters a machine learning system that could have universal effect.
+
+Once you are have left this planet, your ideas will now not only live on the hearts and minds of those that chose to engage with the content you left behind, but also explicitly and involuntarily in the weights of neural networks that might eventually take over responsibility for steering the course of civilization.
+        </pre>
+    </main>
+    <script>
+        document.getElementById('content').innerHTML = marked.parse(document.getElementById('markdown').textContent);
+    </script>
+    <footer>
+        <p>visitors: <span id="visitors"></span></p>
+    </footer>
+    <script>
+        document.getElementById('content').innerHTML = marked.parse(document.getElementById('markdown').textContent);
+    </script>
+    <script>
+        fetch(`https://synetic.goatcounter.com/counter/${encodeURIComponent(location.pathname)}.json`)
+            .then(res => res.json()).then(data => document.querySelector('#visitors').textContent = data.count);
+    </script>
+</body>
+
+</html>
