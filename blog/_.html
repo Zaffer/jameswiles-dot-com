@@ -18,17 +18,19 @@
     </header>
     <main id="content"></main>
     <pre id="markdown" style="display: none">
-# Title
+# Template Post
 *James K. Wiles | 2025-01-01*
 
-Paragraph.
+This is a placeholder post, to copy and paste, keeping things simple, because life is complex enough.
 
-- Lists
+- List item
 - **Bold** and *italic* text
-- [Links](https://jameswiles.com/)
-- Images: ![Alt text](/blog/images/acorn.png)
+- Links like this: [Links](https://jameswiles.com/)
+- Images appear like so: ![Alt text](/blog/images/acorn.png)
 
-More text...
+1. Numbers
+1. Still numbers
+2. Actually ordered
     </pre>
     <script>
         document.getElementById('content').innerHTML = marked.parse(document.getElementById('markdown').textContent);
