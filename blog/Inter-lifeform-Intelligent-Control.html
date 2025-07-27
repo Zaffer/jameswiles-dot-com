@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>James Wiles Blog</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked@16/lib/marked.umd.min.js"></script>
+    <script data-goatcounter="https://synetic.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/">James Wiles Blog</a>
+        </nav>
+    </header>
+    <main id="content"></main>
+    <pre id="markdown" style="display: none">
+# 🐺 Inter-lifeform Intelligent Control
+*James K. Wiles | 2024-05-24*
+
+Comparing some lifeforms to analyze the role intelligence plays in collaborative survival.
+
+It might be inevitable that Artificial Intelligence will gain the ability to destroy humanity, because it is smart enough to out think us and different enough from us to be an enemy. Humans have had to deal with adversarial intelligences before and we could learn something by comparing how we managed those encounters to how we are developing our relationship with AI.
+
+Let's to take the most domesticated example first: Dogs 🐕
+
+Dogs and humans have a special partnership that has involved a large degree of evolution (maybe even co-evolution) since we domesticated wolves and turned them into man's best friend. Dogs and humans have developed skills, behaviors, and genetics that make it easier for us to collaborate. Before domestication wolves where one of our greatest competitors. Groups of wolves form an intelligent hunting force that could easily devastate a small number of humans in the dark. Evolutionary pressures, combined with a natural predisposition to work in teams, resulted in the transformation of once bitter rivals into closest inter-species friends. We have utilized dogs for many reasons that have help our survival in the past and are now mostly around for human social benefits. Dogs benefit from being in the company of humans immensely, while a dog's life without an ‘owner' is quite obviously a more desperate existence. If dogs ever decided they had enough of humans and wanted to return to our previous arrangement, that of hunting us down in the night, they would find it an extremely challenging endeavor, and would likely result in there species rapid decline.
+
+Now we let's compare another great enemy from our past: Snakes 🐍
+
+Snakes have also caused such long term dread in humans that the fear of them are virtually engrained in us genetically. They would be been equally difficult for our early ancestors to eradicate and just as lethal to an unsuspecting human wandering around in the forest. The difference is that we have found almost no ways to form a survival-based partnership with snakes at scale. If you asked why that is, one could point to the nature of snakes, having a strong reliance of short-term reflexivity, and a much lower relative ability for things important to form cross-species collaboration; like memory, communication, and social bonds. Snakes have probably _the most_ anti-social behavior of any animal humans try to still keep around as pets. However, the numbers would show there are many more still skulking around in the wilds compared to the man-made habitats for created for them.
+
+Comparing these two animals on the levels of intelligence is an interesting dimension because unlike the other physical comparisons, intelligence is the aspect we are acceleratingly trying to build into machines. Of the comparisons snakes could be said to have the lowest form of intelligence we care about, compared to ourselves. This means we don't get each other, and are smart enough to keep them under our collective foot (proverbially). Dogs are most likely be a step above snakes on this intelligence ladder, but below humans. Maybe our intellectual closeness is what fosters our ability to work together better. However we still hold the upper hand (or paw, as the case may be), perhaps because of our superior intelligence, giving us the ability to tell them “bad doggie!” and not the other way around.
+
+Now the challenge before for us is that we have been living for so long in the most privileged top-dog position that it is difficult for us to fathom a world in which we would need to deal with something smarter then ourselves. For the thought experiment; lets take AI's to be a separate lifeform that develops the ability to be more intelligent than us.
+
+Based on the simple trends in our previous examples there are a few potential outcomes. The AI's could be a little bit smarter then us and we co-develop a symbiotic bound that enables us to flourish as a species, although potentially in a subservient manner. This should not make you feel too uncomfortable if you compare this to the relationship we have with our furry buddies, because we human owners love our loyal companions! Similarly one could imagine we happily co-exist with our AI masters, even though they might have the ability to existentially reprimand us, but simultaneously spoil and care for us so that we had little worries. Similar to the current optionality K-9's have, some of us could decide at anytime to strike it out on our own, and live “a dog's life” without the future AI's help, if we wished to be that soloist.
+
+In the case where the IQ difference is more like us being the reptiles compared to future AI, then you could see a greater chance for never ending hostility between our “species”.
+
+The big difference between the two cases, is that we had a significant say in the genetic evolution of dogs, and we crafted the various dog breeds to be the way they are through careful selection and breeding. In this way we have somewhat ensured our future mutual inter-species compatibility and survival, and perhaps this is the key lesson and tool we can use to ensure our own survival in a future where we are the ones at the mercy of a superior intelligence. The lesson being the importance of co-evolution and adaptation to ensure mutual collaborative incentives regardless of the intelligence gap.
+
+If the AI's we allow to propagate have our best interests at heart, and the systems we employ to ensure control rests with us for as long as possible, then the maintenance of this evolutionary pressure can align our collaboration for mutual benefit. Being intelligent about the selective controls we place on AI (while the intelligence gap is still close) and by taking lessons from our experience with our other successful inter-lifeform partnerships, together will give us a shot at living a comfortable, happy existence into the future controlled by AI's.
+    </pre>
+    <script>
+        document.getElementById('content').innerHTML = marked.parse(document.getElementById('markdown').textContent);
+    </script>
+    <footer>
+        <p>visitors: <span id="visitors"></span></p>
+    </footer>
+    <script>
+        fetch(`https://synetic.goatcounter.com/counter/${encodeURIComponent(location.pathname)}.json`)
+            .then(res => res.json()).then(data => document.querySelector('#visitors').textContent = data.count);
+    </script>
+</body>
+
+</html>
