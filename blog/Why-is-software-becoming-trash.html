@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>James Wiles Blog</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked@16/lib/marked.umd.min.js"></script>
+    <script data-goatcounter="https://synetic.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/">James Wiles Blog</a>
+        </nav>
+    </header>
+    <main id="content"></main>
+    <pre id="markdown" style="display: none">
+# 📱 Why is software becoming trash
+*James K. Wiles | 2025-04-08*
+
+Why is software becoming trash? Why does it feel like software is just becoming more and more trashy overtime? The websites of the 90's where not impressive, but they worked. You could go to a webpage and click on things until you got the job done. Today a modern web page is so complicated and over engineered that the gap between business logic and functional code that achieves user expectations is too distant.
+
+My hot take is that in the past, only the nerdiest people with a predisposition for hyper fixation would get into coding, and these coders obsessed about the details. Today, a 12 year old tiktok influencer can can make an app that barely works, but it also somehow feels the exact same as what a large corporate would output after years of development and a multi-million dollar budget.
+
+Try to use any app of a large financial institution or try logging into a government website. Somehow this seems like a worse experience than it was 10-15 years ago. I think this is because it is easier to create digital assets than ever before, so you can now action almost any idiotic request corporate dreams up, and there is an over abundance of those.
+
+The only time I have used a software product and actually been impressed with the user experience recently, had been from projects that have fully embraced commercial open source. The idea is that you make the code fully open source but you have a sustainable business model of selling intergrated cloud, specialised hardware, proprietary extensions, or business licences. Closed source code is no longer a moat, especially with modern generative technology. In fact, I would go as far as to say it is now officially a liability.
+
+If I had access to fix the 29 annoying things I experience everytime I sign into my banking app, I absolutely would make a pull request to their codebase to have that resolved, and so would hundreds or thousands of other developers (sometimes way better devs, who are forced to use your service, compared to the ones you found willing to work on your shitty app). Why would you as a company not want that free help? The only reason I can think off is because of incompetence, immense technical debt that reveals security vulnerabilities, or a misguided opinion of the value of the intellectual property of the code itself.
+
+Especially on the frontend, I don't see why anyone should have proprietary frontend software anymore. Technically it is already visible to everyone, and reverse engineering the uncompiled JavaScript is not necessary if you can just replicate the user interface. Simply put all your "secret sauces" behind a well structured and secure backend interface, with some basic API documentation.
+
+But even a backend can be replicated, so the real value that should be kept proprietary are actually only things like novel algorithms or hardware implementation details that, for example, achieve unique levels of efficiency.
+
+### Some random examples to illustrate my point -
+
+Good user experience & commercial open source:
+
+- VSCode
+- Obsidian
+- Pydantic
+- Weights&Biases
+- Dask
+- Grafana
+- Ubuntu
+    
+
+Good user experience & fully open source:
+
+- FastAPI
+- Linux
+    
+
+Bad user experience & non-profit open source:
+
+- Thunderbird
+- MediaWiki
+    
+
+Worst user experience & closed source:
+
+- all apps by large bureaucracies
+
+
+### Two counter-examples for reference -
+
+Bad user experience & commercial open source:
+
+- Wordpress
+
+Good user experience & closed source:
+
+- Discord
+
+
+We need to embrace the paradigm of fostering a community of competent codebase contributors and realise that no-one is going to steal your idea if they just have access to the code that can improve the user experience.
+
+P.S. writing this very piece was made barely possible by using Gboard, which decided to push an update that made the enter key just slightly bigger so that now every time I try to hit backspace I am instead creating new lines, which I can't quickly fix, because when I try to hit backspace, it just makes more new lines. It feels like this trend of software becoming mush is accelerating.
+    </pre>
+    <script>
+        document.getElementById('content').innerHTML = marked.parse(document.getElementById('markdown').textContent);
+    </script>
+    <footer>
+        <p>visitors: <span id="visitors"></span></p>
+    </footer>
+    <script>
+        fetch(`https://synetic.goatcounter.com/counter/${encodeURIComponent(location.pathname)}.json`)
+            .then(res => res.json()).then(data => document.querySelector('#visitors').textContent = data.count);
+    </script>
+</body>
+
+</html>
