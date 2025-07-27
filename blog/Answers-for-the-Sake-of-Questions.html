@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>James Wiles Blog</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked@16/lib/marked.umd.min.js"></script>
+    <script data-goatcounter="https://synetic.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/">James Wiles Blog</a>
+        </nav>
+    </header>
+    <main id="content"></main>
+    <pre id="markdown" style="display: none">
+# Answers for the Sake of Questions
+*James K. Wiles | 2025-07-26**
+
+Asking questions and providing answers is a deep fundamental issue. This ties into making predictions about the future, which is the most important thing we do.
+Those that provide good answers have more value. Those that ask good questions are valuable to the degree that the value of the potential answers to that question might have. If no one asked those questions before, the inference on new valuable answers passes through that chain originated by the questioner.
+
+Providing reliability of the future is what value is. Packaging high probability prediction into a form that can be traded is basically economics. Trade exists because we are all in different states; this difference causes value difference in space and time. Trading prediction time horizons might be the main activity of markets.
+
+Sometimes providing answers, no matter how sub-optimal, is accepted because at least it is an answer. Spending resources to think of a new answer might not be worth it.
+
+Personal anecdote: I was 13 and watched someone pack sausages into a container straight out of the fireplace. It was running out of space, I offered to rearrange the sausages. It took time, the flow of hot sausages had to pause, some got burnt, the ones in the container got cold, and in the end my re-arrangement was worse. I naively thought that simply trying a better arrangement that had more effort put into figuring it out would definitely yield a better result. If it did work, we would have had maybe 25% - 35% better use of space, but regardless it was at the expense of burnt and cold sausages. Not worth it!
+
+What if you could reduce the cost? You still wouldn't know if this new method had other unexpected consequences with new problems not encountered before. New and better in one area always invites new and worse in other areas. Just sticking to what's known makes you susceptible to innovation, but resistant to issues pure change brings.
+
+Taking the above scenario, I asked a question: "May I figure out a better packing?" The potential answers were of some value, and so control was bestowed upon me with the promise of delivering an answer, but with some skepticism. In fact after the failure and return of the tongs to undo my worse setup, I received a look of 'Are you crazy? Why would you try to upset the reasonable existing solution'. This is probably a face every autistic engineer knows all too well. 
+
+Had I instead offered a solution, and a known answer, with high predictive power, the value tradeoff would have been different. I could have provided the packing model itself, which the person doing the packing could just implement right away, without the time-cost of having to work it out. The model could be simulated mentally first to add confirmative probability, or even to better evaluate the cost-benefit tradeoff beforehand.
+
+When you see solutions being provided to problems in the world that you believe to be bad (at worst) or slightly sub-optimal (at best), have some respect for the fact that it is an answer to a question if nothing else. And if you decide to question the status quo, have respect for the cost of that question and have an answer. If you have an answer in mind already, formalize it beyond a shadow of a doubt and evaluate the cost-benefits fully. If you do this, then you make your answer to the question the most reasonable and acceptable, and even if not implemented (maybe due to politics or corruption) it at least has the most theoretical value. The value of the logic itself can be preserved and used in other places and times, where the value can be, in actually, realize (maybe even long past your lifetime).
+
+Society over millennia is just built up out of stacks and stacks of questions and answers, followed by more questions and again more answers. Kind of forming a causal network. One has to be followed by the other. Questions to questions, and answers to answers don't compose to create useful structures. Each question opens many new possible answers, every accepted answer provides a forward direction to ask new questions which, without that provided answer, might never have been asked. Exploring this graph has only one feature, questions follow answers, which follow questions and so on. 
+
+This conception can paint all of life, look at anyone going about the decisions they make on a daily basis. They are asking questions; "What to eat for dinner?", "How to get that promotion?", "Will that person go on a date with me?", and this guides in small and large ways all the actions that take place. Giving someone an answer to a problem they did not have a question for often causes issues, and likewise giving someone a question they want an answer to that they were not ready to start asking, comes with probably more issues.
+
+When society settles into a routine and the questions become mundane, as the answers are all within reach, the whole network becomes fragile to external forces forcing problems on to you that you were not prepared to grapple with. Grappling with hard questions and, importantly, coming up with good answers moves society and life forward. Without big questions we have nothing important to struggle with, and to some people that is fine, but to risk takers and adventurers this is an unacceptable fate. This is why some people are "born to take risks", and is my theory for why the penguins in Antarctica sometimes decide to wander off from the waddle to certain death. There is a certain level of craziness that a system should endure to allow for exploration of low probability of success outcomes which could change everyone's fate. Maybe a lone penguin that one day decided to head South for no logical reasons whatsoever is the one that discovered Antarctica in the first place. He had a question that needed an answer, not matter the personal cost.
+    </pre>
+    <script>
+        document.getElementById('content').innerHTML = marked.parse(document.getElementById('markdown').textContent);
+    </script>
+    <footer>
+        <p>visitors: <span id="visitors"></span></p>
+    </footer>
+    <script>
+        fetch(`https://synetic.goatcounter.com/counter/${encodeURIComponent(location.pathname)}.json`)
+            .then(res => res.json()).then(data => document.querySelector('#visitors').textContent = data.count);
+    </script>
+</body>
+
+</html>
