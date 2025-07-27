@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>James Wiles Blog</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked@16/lib/marked.umd.min.js"></script>
+    <script data-goatcounter="https://synetic.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/">James Wiles Blog</a>
+        </nav>
+    </header>
+    <main id="content"></main>
+    <pre id="markdown" style="display: none">
+# 📈 WTF 1971
+*James K. Wiles | 2023-10-26 (updated 2025-07-27)*
+
+
+### CPU invented
+1971
+
+
+### Real compensation vs Productivity divergence
+![real compensation vs productivity divergence](Real compensation vs Productivity divergence.jpg)
+
+
+### Energy consumption flatlining
+![energy consumption flatlining](Energy consumption flatlining.png)
+
+
+### Energy use trend break
+![energy use trend break](Energy use trend break.png)
+
+
+### Employment IQ Tests Made Illegal in 1971
+
+In 1971, in the case [_Griggs v. Duke Power Co._]([https://en.wikipedia.org/wiki/Griggs_v._Duke_Power_Co.)[[1]](https://en.wikipedia.org/wiki/Griggs_v._Duke_Power_Co.\) [1]([http://finduslaw.com/griggs_v_duke_power_co_1971_401_us_424_91_s_ct_849](http://finduslaw.com/griggs_v_duke_power_co_1971_401_us_424_91_s_ct_849)),[10](https://en.wikipedia.org/wiki/Intelligence_and_public_policy#cite_note-10) the [US Supreme Court](https://en.wikipedia.org/wiki/US_Supreme_Court) handed down a seminal ruling which framed US public policy on adverse impact. _Griggs_ concerned a company which had rejected a large number of Black applicants who either lacked a high-school education or performed poorly on a paper-and-pencil cognitive test. Referring to the [Civil Rights Act of 1964](https://en.wikipedia.org/wiki/Civil_Rights_Act_of_1964) [2](https://web.archive.org/web/20111229033506/http://finduslaw.com/civil_rights_act_of_1964_cra_title_vii_equal_employment_opportunities_42_us_code_chapter_21), the Court wrote,
+
+> The Act proscribes not only overt discrimination but also practices that are fair in form, but discriminatory in operation. The touchstone is business necessity. If an employment practice which operates to exclude Negroes cannot be shown to be related to job performance, the practice is prohibited.
+
+Title VII of the [Civil Rights Act](https://en.wikipedia.org/wiki/Civil_Rights_Act_of_1964) generally prohibits employment practices that are unfair or discriminatory. One provision of Title VII, codified at 42 USC 2000e-2(h), specifically provides that it is not an "[unlawful employment practice](https://en.wikipedia.org/wiki/Employment_discrimination) for an employer to give and to act upon the results of any professionally developed ability test provided that such test, its administration or action upon the results is not designed, intended or used to discriminate because of race, color, religion, sex or national origin." This statute was interpreted by the Supreme Court in [_Griggs v. Duke Power Co._](https://en.wikipedia.org/wiki/Griggs_v._Duke_Power_Co.), 401 US 424 (1971). In _Griggs_, the Court ruled that the reliance solely on a general IQ test that was not found to be specifically relevant to the job at issue was a discriminatory practice where it had a "disparate impact" on hiring.
+
+### Last Update to Standard Model of Physics
+1973
+
+
+### Demographic perturbance
+![USA population pyramid](USA_Population_Pyramid.png)
+*In 2022 a person that is 51 years old was born in 1971*
+
+
+### WEF (World Economic Forum) founded
+1971
+
+
+### Non-defence US government RnD budget
+Post-WWII. The budget dedicated to science increases enormously. For instance, the average yearly growth of the US federal budget dedicated to non-defense R&D between 1953 and 1973 is more than 15% Historical Trends in Federal R&D. [Fromaaas.org](http://fromaaas.org/) (American Association for the Advancement of Science)]
+
+
+### Peer review
+![peer review](peer-review.png)
+[https://sappingattention.blogspot.com/2017/09/peer-review-is-younger-than-you-think.html](https://sappingattention.blogspot.com/2017/09/peer-review-is-younger-than-you-think.html)
+
+
+## TRAILING
+
+### School completion rates
+![school completion rates](School completion rates.png)
+
+
+### US Congress age
+![US congress age](US Congress age.png)
+
+
+## LEADING
+
+### Research productivity
+![research productivity](Research productivity.png)
+
+
+### Out-of-wedlock births
+![out-of-wedlock births](Out-of-wedlock births.png)
+
+    </pre>
+    <script>
+        document.getElementById('content').innerHTML = marked.parse(document.getElementById('markdown').textContent);
+    </script>
+    <footer>
+        <p>visitors: <span id="visitors"></span></p>
+    </footer>
+    <script>
+        fetch(`https://synetic.goatcounter.com/counter/${encodeURIComponent(location.pathname)}.json`)
+            .then(res => res.json()).then(data => document.querySelector('#visitors').textContent = data.count);
+    </script>
+</body>
+
+</html>

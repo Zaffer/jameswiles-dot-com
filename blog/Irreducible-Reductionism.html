@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>James Wiles Blog</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked@16/lib/marked.umd.min.js"></script>
+    <script data-goatcounter="https://synetic.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/">James Wiles Blog</a>
+        </nav>
+    </header>
+    <main id="content"></main>
+    <pre id="markdown" style="display: none">
+# 🐦 Irreducible Reductionism
+*James K. Wiles | 2022-01-05 *
+
+Matti Heino posted a question:
+
+“I had a small question about emergence: Once you know temperature exists, would you be able to measure the movement intensity of a single atom, to get some sense of the temperature of the system it belongs in?"
+
+A piece of a whole is not the same as the whole but making a observation of a part of a system can reveal information the whole system. Looking a single atom of a tea cup and measuring its movement intensity before and after a hot beverage added to the cup can give you a sense of the system’s current temperature.
+
+![cold and hot coffee](/blog/images/hot-coffee.png)
+
+
+The questioner continued: ”I thought of the analogy, because in health psychology / behavioural medicine, scoping up from an individual’s behaviour to the aggregate behaviour of the community the individual belongs to, results in new features such as social dynamics, including social norms, which do not exist on the scale of the individual. But people believe the crux of those norms can be explicated by inquiring (in a specific way) about an individual’s perceived norms.”
+
+“Do you find this a credible way to infer macro-scale features from micro-scale components?”
+
+To my mind yes: studying an atom can reveal it's system's temperature, but what is harder (due to complexity) is to look at an atom and predict what its behaviour will be at a given system's temperature, as that will emerge from the complexity of the system. Once its already happening then you can study it, but emergence is something once hidden.
+
+Applied to people I would think that you could determine the crux of an emerged social dynamic by investigating an individual in that society, as the features are evident, so the phenomena can be traced. What's near impossible is trying to then infer that a phenomena will occur based on measuring someone where that societal feature is not yet present.
+
+![bird murmuration](/blog/images/bird-flock.png)
+
+
+The bird murmuration example is great one. Studying a single bird all you wanted would not tell that murmurations would occur, but studying a single bird already inside a murmuration can reveal a lot of details about this emergent phenomena and the of bird.
+
+I actually have a question about this... given sufficient technological ability and human comprehension, would it not be possible to predict a complex emergent phenomena like a bird's murmuration by looking in enough detail at a single bird (including it's neural network, chemistry, even atomic makeup)? Since it is inevitable that murmurations will occur given the right conditions, is there not something inside the bird that can be understood that will make prediction possible? ie. Complete comprehension of a cellular automata's rules could allow you to know that complexity emerges when running the system, and the constraint is more to do with the cost of computation needed to run the model for an accurate prediction and in fact that cost is never less than running the system for real...
+
+and in a way this links to the halting problem.
+
+![bird murmuration once at scale](/blog/images/bird-flock-scale.png)
+
+Given the following futuristic case: There is a single bird left on the planet and there is no history of murmurations but you were simply told that complex behaviour emerges from multiple birds interacting and you were tasked with discovering what the behaviour is. You can study the bird in enough detail to discover certain complex behaviours, for arguments sake, by running 10 super computers each simulating fully a single bird, but you would not know at that stage if it required 100 or 1,000 or 10,000 super computers before a murmuration would occur. You CAN NOT predict the amount of computing power needed to run the simulation for a undiscovered phenomena to emerge, but given enough computing power, would one bird be enough to predict a murmuration? (Running a computer programme 100 steps can tell you that it will halt if it was programmed to stop in 100 steps, but if not you will not know how much longer it will for).
+
+`for n in list(range(100)): print(f"step {n+1}")`
+
+Perhaps all problems of prediction are all just problems or irreducible complexity and the emergence hides behind the adjacent possible at an unknowable distance.
+
+    </pre>
+    <script>
+        document.getElementById('content').innerHTML = marked.parse(document.getElementById('markdown').textContent);
+    </script>
+    <footer>
+        <p>visitors: <span id="visitors"></span></p>
+    </footer>
+    <script>
+        fetch(`https://synetic.goatcounter.com/counter/${encodeURIComponent(location.pathname)}.json`)
+            .then(res => res.json()).then(data => document.querySelector('#visitors').textContent = data.count);
+    </script>
+</body>
+
+</html>

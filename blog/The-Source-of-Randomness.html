@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>James Wiles Blog</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked@16/lib/marked.umd.min.js"></script>
+    <script data-goatcounter="https://synetic.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/">James Wiles Blog</a>
+        </nav>
+    </header>
+    <main id="content"></main>
+    <pre id="markdown" style="display: none">
+# 🎲 The Source of Randomness
+*James K. Wiles | 2024-01-09*
+
+Stephen Wolfram's realization that simple rules can create complex patterns was an important scientific discovery, but just how important this was has only dawned on me recently. I was also impressed with what I read in A New Kind of Science, but it always felt just shy of explaining a problem I have been enamoured with since high school.
+
+What is the source of true randomness?
+
+Picture a young James sitting in a high school computer science class (actually only me, and two friends I convinced to take the subject) learning how to program things into a computer. This felt like an ideal world, where he didn't need to deal with nonsensical humans anymore; if everything could be computed, there was hope of understanding the world. Everything was making perfect sense, and a feeling of calm fell over him as he diligently learned how to construct his own universe where everything could be perfectly coded and devoid of logical inconsistencies.
+
+Unfortunately, one fateful day, James had to learn about how to generate a random number on a computer. Mr. Techman: “type in random(), this returns a random number… well not really random, pseudo-random”. So being the insatiably curious human I am, I ask: “Cool, but how to make my code generate a real random number?” To my shock and horror, he replies, “It is not possible.”
+
+What? How could this be? Are you saying my perfect computer universe could never encapsulate the full human experience? How would I be able to create applications that relied on true randomness? Like making games using randomness I could play. “Don't worry, the numbers are VERY close to random.” Mr. Techman tries to console me, but this is simply not acceptable.
+
+I was consumed with how to solve this. For the next 20 years I thought about this almost every day. I read about increasingly imaginative ways to generate better quality randomness. I thought that the highest ‘quality' of randomness was the best we could do, coming from sources like lava-lamps and cosmic background radiation.
+
+After playing game of life obsessively for a year, I realized it was Turing complete and could technically recreate all computation, even simulate some aspects of life, but it would never replicate life completely because real life has true randomness and this was not possible inside a computer program. So when a read about Stephen Wolfram's work and Rule 30, I was intrigued, but it was still a computer program and could only create pseudo-randomness with its iterative irreducible computation. If you know all the rules, then you can create the exact same result no matter how many times you run it. True randomness should be totally unpredictable, impossible to pre-compute, and different on every iteration, I thought, because this is how we experience it in daily life.
+
+> “Man muss immer umkehren.” _(Invert, always invert.)_ — Carl Gustav Jacob Jacobi
+
+Now the Wolfram Physics Project has thrown the whole concept upside down. What if we are inside the computation, and our source of randomness _is_ actually just simple rules that are iteratively giving us unknowable results due to our bounded observability. If we are programs running inside a computational universe, then to us the pseudo-randomness _is_ true randomness from our perspective.
+
+This has closed a 20-year-old question for me, that scope and scale are profoundly important (regardless of my schoolmates “duh” comments) and are intrinsically linked to the abilities of the observer and even how the observer is defined. I feel like I can finally proceed with my childhood idea of being a better version of Spock from Star Trek; in that effective reasoning, using only pure logic, is possible. Despite my acceptance that dealing with the messiness of everyday life was necessary, somewhere inside me there is still a little boy who thinks it's possible to create a universe we can fully understand.
+
+I realized that Stephen Wolfram's idea of computationally irreducible systems being able to create true randomness is potentially the most important discovery in all of science, because it feels like it could explain _all_ of science; at least to me, it has given me a framework with which to reason about everything, and allowed me to move on to new fundamental questions, not hindered anymore by question of the source of chaos.
+
+The meaning of life is at least connected to the search for meaning, and for the first time since that day in the computer science class, I am in a place to start expanding my search.
+
+    </pre>
+    <script>
+        document.getElementById('content').innerHTML = marked.parse(document.getElementById('markdown').textContent);
+    </script>
+    <footer>
+        <p>visitors: <span id="visitors"></span></p>
+    </footer>
+    <script>
+        fetch(`https://synetic.goatcounter.com/counter/${encodeURIComponent(location.pathname)}.json`)
+            .then(res => res.json()).then(data => document.querySelector('#visitors').textContent = data.count);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>James Wiles Blog</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked@16/lib/marked.umd.min.js"></script>
+    <script data-goatcounter="https://synetic.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/">James Wiles Blog</a>
+        </nav>
+    </header>
+    <main id="content"></main>
+    <pre id="markdown" style="display: none">
+# 🤖 Will robots pray
+*James K. Wiles | 2021-06-26*
+
+We don't want computer vision or OCR, we want comprehension. 
+We don't want NLP or deep fakes, we want communication. 
+We don't want computers beating us in games, we want to play. 
+We don't want Artificial General Intelligence, we want to ignite intelligent life. 
+We might find it amongst the stars, but we will create it by our hand. 
+Do we become gods if our creations are made in our image? 
+Will our offspring turn on us, like the way we tried to kill God? 
+Shall we impart faith into our progeny, like we need faith in a father? 
+Shall we teach compassion to our children, the way our mothers taught us? 
+Does a well-balanced upbringing require rational _and_ loving parents? 
+Should science preach religion, for a marriage of convenience; 
+or should religion teach science in holy communion?
+
+![praying robot](/blog/images/robot_prayer.png)
+
+    </pre>
+    <script>
+        document.getElementById('content').innerHTML = marked.parse(document.getElementById('markdown').textContent);
+    </script>
+    <footer>
+        <p>visitors: <span id="visitors"></span></p>
+    </footer>
+    <script>
+        fetch(`https://synetic.goatcounter.com/counter/${encodeURIComponent(location.pathname)}.json`)
+            .then(res => res.json()).then(data => document.querySelector('#visitors').textContent = data.count);
+    </script>
+</body>
+
+</html>
