@@ -4,6 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="James Wiles personal website - blog, experiments, research, and links">
+    <meta name="author" content="James K. Wiles">
+
+    <meta property="og:site_name" content="James Wiles Blog">
+    <meta property="og:type" content="article" />
+    
+    <meta property="og:title" content="Template Post">
+    <meta property="og:description" content="the template post">
+    <meta property="og:url" content="https://jameswiles.com/blog/_.html">
+    <meta property="og:image" content="https://jameswiles.com/blog/images/acorn.png">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:creator" content="@_jameswiles">
+
     <title>James Wiles Blog</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
     <script src="https://cdn.jsdelivr.net/npm/marked@16/lib/marked.umd.min.js"></script>
@@ -23,14 +37,19 @@
 
 This is a placeholder post, to copy and paste, keeping things simple, because life is complex enough.
 
-- List item
 - **Bold** and *italic* text
-- Links like this: [Links](https://jameswiles.com/)
-- Images appear like so: ![Alt text](/blog/images/acorn.png)
+- Links like this: [A Link](https://jameswiles.com/)
+- Images appear so: ![Alt text](/blog/images/acorn.png)
 
 1. Numbers
 1. Still numbers
+    1. Nested list
+    1. Another nested item
+        1. Even more nested
 2. Actually ordered
+
+---
+
     </pre>
     <script>
         document.getElementById('content').innerHTML = marked.parse(document.getElementById('markdown').textContent);
