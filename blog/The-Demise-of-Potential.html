@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="James Wiles personal website - blog, experiments, research, and links">
+    <meta name="author" content="James K. Wiles">
+
+    <meta property="og:site_name" content="James Wiles Blog">
+    <meta property="og:type" content="article" />
+    
+    <meta property="og:title" content="Template Post">
+    <meta property="og:description" content="the template post">
+    <meta property="og:url" content="https://jameswiles.com/blog/_.html">
+    <meta property="og:image" content="https://jameswiles.com/blog/images/acorn.png">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:creator" content="@_jameswiles">
+
+    <title>The Demise of Potential | James Wiles Blog</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked@16/lib/marked.umd.min.js"></script>
+    <script data-goatcounter="https://synetic.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/">James Wiles Blog</a>
+        </nav>
+    </header>
+    <main id="content"></main>
+    <pre id="markdown" style="display: none">
+# The Demise of Potential
+*James K. Wiles | 2025-08-14*
+
+Jon tries very hard, often with the whole world against him. Always on the edge of achieving glory but not quite getting there yet.
+
+Jon decided to get a triple-shot cappuccino expresso today, he was going to need it to work late.
+"I'll have it to-go today please."
+There was an early meeting he had to get back to this morning.
+Jon takes a couple sips of the foam as he crosses the street. 
+A bus appears to his left, moving fast... 
+"Shit!"
+
+"It wasn't meant to be this way" Jon's ex proclaims at the funeral.
+Jon's son asks, "How did you think he would die?".
+"In a blaze of glory, obviously.", she responds.
+
+"Hmm...", Jon's son ponders to himself for a moment.
+"What's the lesson here? What am I supposed to learn from this? Dad tried so hard and did so many things, then died. Surely there is some knowledge or wisdom I can inherit from his life. Someone that put so much effort into creating something magnificent surely has some nuggets of wisdom to pass on from the story of his life? Even if he did not achieve what he set out to do... or even much of anything in the end.", he thinks to himself.
+"It seems not." he concludes, "Hmm...".
+
+---
+
+    </pre>
+    <script>
+        document.getElementById('content').innerHTML = marked.parse(document.getElementById('markdown').textContent);
+    </script>
+    <footer>
+        <p>visitors: <span id="visitors"></span></p>
+    </footer>
+    <script>
+        fetch(`https://synetic.goatcounter.com/counter/${encodeURIComponent(location.pathname)}.json`)
+            .then(res => res.json()).then(data => document.querySelector('#visitors').textContent = data.count);
+    </script>
+</body>
+
+</html>
