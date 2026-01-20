@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="James Wiles personal website - blog, experiments, research, and links">
+    <meta name="author" content="James K. Wiles">
+
+    <meta property="og:site_name" content="James Wiles Blog">
+    <meta property="og:type" content="article" />
+    
+    <meta property="og:title" content="🎯 Naive Classification for the Goals of Computational Systems">
+    <meta property="og:description" content="suggesting four categories for defining what a system does">
+    <meta property="og:url" content="https://jameswiles.com/blog/_.html">
+    <meta property="og:image" content="https://jameswiles.com/blog/images/acorn.png">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:creator" content="@_jameswiles">
+
+    <title>🎯 Naive Classification for the Goals of Computational Systems| James Wiles Blog</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked@16/lib/marked.umd.min.js"></script>
+    <script data-goatcounter="https://synetic.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/">James Wiles Blog</a>
+        </nav>
+    </header>
+    <main id="content"></main>
+    <pre id="markdown" style="display: none">
+# 🎯 Naive Classification for the Goals of Computational Systems
+*James K. Wiles | 2026-01-19*
+
+When thinking about systems that perform some function, you can think of those functions as trying to serve a purpose. That purpose could be some kind of goal, which is either known, knowable, or unknowable. But can we perhaps define this goal more strictly using some computational classifications?
+
+I suggest here four categories for defining what a system does:
+
+1. strongly reducible (SR)
+2. reducible (R)
+3. irreducible (I)
+4. strongly irreducible (SI)
+
+A computational observer has a finite set of rules with which it is able to reason about any given system it is observing. 
+Examples:
+- an observer that only understands XOR, monitoring what a computer does, it will only be able to reason at the level of XOR's, and define the goal of the computer as doing many XOR's.
+- an observer understanding at the level of a CPU, will understand what a computer does in terms of chipset instructions, and define the goal as processing instructions.
+- an person using a computer will observe what the computer does at "computes things" and other high level human language description of goals.
+
+Given this construction one can categorize the goals all systems:
+
+1. if the observer contains a single rule that full captures the process of the system from beginning to end, the goal can be considered "strongly reducible"
+2. if the observer contains a multiple rules, with at lest one that fully captures the systems goal, it is "reducible"
+3. if the observer contains multiple rules which need to processed in a particular sequence (or various sequences exist), or has a single rule which needs to iteratively applied, to get to the end states, this is considered "irreducible"
+4. if the observer contains no rules which if run in any possible way will not be able to give you the systems result, this is considered "strongly irreducible"
+
+The biological intuition is that as for any organism watching what another organism does, in general it is impossible to ascertain it's goals. If you ask the creature what it is doing, and it suddenly makes sense and agrees with observation, you can consider the goal understood with a single description (SR).
+
+If you ask it and it responds with a clue, or even a lie, but you can still piece together the truth of what it is actually doing, given the observable facts, then you can still considered the goal defined in your own mind (R).
+
+If the creature is doing pretty wild things, and it is impossible to strictly define what it's goal is, but you are able to model the creature in a way that you can potentially simulate, or define at best a probabilistic model then it's goal is irreducible to you (I).
+
+If there is no way to remotely figure out what this things is doing and it is effectively performing magic according to you, then it is simply impossible to comprehend or model in anyway (SI).
+
+These categories require the concept of the bounded observer to make sense, because in the abstract there will always exist some computational description that fully captures the definition of the goal of the system, but for any system reasoning about another system, you won't have access to infinite computational descriptions in finite time.
+
+The case of the halting problem:
+- (SR): if you can read the program and the input and in a single step determine the system will halt by definition
+- (R): if you can read the input and program, and with only a look-up search determine the end result
+- (I): you have to run the program to determine the outcome, and the outcome it determinable
+- (SI): you run the program forever and an outcome never materialize
+    </pre>
+    <script>
+        document.getElementById('content').innerHTML = marked.parse(document.getElementById('markdown').textContent);
+    </script>
+    <footer>
+        <p>visitors: <span id="visitors"></span></p>
+    </footer>
+    <script>
+        fetch(`https://synetic.goatcounter.com/counter/${encodeURIComponent(location.pathname)}.json`)
+            .then(res => res.json()).then(data => document.querySelector('#visitors').textContent = data.count);
+    </script>
+</body>
+
+</html>
