@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>XOR MLP NN BP GD</title>
+    <title> XOR Neural Network Visualization</title>
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -25,16 +25,22 @@
       <button id="epochButton" style="font-size: 24px">⏭️</button>
       <button id="playButton" style="font-size: 24px">⏯️</button>
     </div>
+    <div style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; align-items: center; z-index: 100">
+      <span style="color: white; font-family: monospace; font-size: 12px">α</span>
+      <input type="range" id="learningRateSlider" min="0" max="3" step="0.1" value="1" disabled style="writing-mode: vertical-lr; direction: rtl; height: 200px">
+      <span id="lrValue" style="color: white; font-family: monospace; font-size: 12px">1.0</span>
+    </div>
 
     <script type="module">
       import * as THREE from "three";
       import { WebGPURenderer } from "three/webgpu";
       import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+      import { CSS2DRenderer, CSS2DObject } from "three/addons/renderers/CSS2DRenderer.js";
 
       /***********************
        * 2) Neural Network
        ***********************/
-      const learningRate = 1;
+      let learningRate = 1;
       const epochs = 1000;
 
       // XOR training data
@@ -129,6 +135,20 @@
             (err, i) => err * this.sigmoidDerivative(this.layer1[i])
           );
 
+          // Store gradients for preview
+          this.lastGradients = {
+            weights2: this.layer1.map((h, i) => outputDelta * h),
+            bias2: outputDelta,
+            weights1: layer1Delta.map((d, i) => [d * inputs[0], d * inputs[1]]),
+            bias1: [...layer1Delta],
+            // Base weights before update
+            baseWeights1: this.weights1.map(w => [...w]),
+            baseWeights2: [...this.weights2],
+            baseBias1: [...this.bias1],
+            baseBias2: this.bias2
+          };
+          document.getElementById('learningRateSlider').disabled = false;
+
           // Update weights and biases
           this.weights2 = this.weights2.map(
             (w, i) => w + learningRate * outputDelta * this.layer1[i]
@@ -162,6 +182,15 @@
       const renderer = new WebGPURenderer();
       renderer.setSize(window.innerWidth, window.innerHeight);
       document.body.appendChild(renderer.domElement);
+      await renderer.init();
+
+      // CSS2D renderer for labels
+      const labelRenderer = new CSS2DRenderer();
+      labelRenderer.setSize(window.innerWidth, window.innerHeight);
+      labelRenderer.domElement.style.position = 'absolute';
+      labelRenderer.domElement.style.top = '0';
+      labelRenderer.domElement.style.pointerEvents = 'none';
+      document.body.appendChild(labelRenderer.domElement);
 
       const controls = new OrbitControls(camera, renderer.domElement);
 
@@ -247,14 +276,11 @@
         for (let i = 0; i < 2; i++) {
           for (let j = 0; j < 2; j++) {
             const weight = network.weights1[j][i];
-            const activation = network.inputActivations[i];
-            const signalStrength = Math.abs(weight * activation);  // How much signal flows through
-            
             const color = weight > 0 ? 0x88ffff : 0xff8888;
             const material = new THREE.MeshBasicMaterial({ 
               color: color,
               transparent: true,
-              opacity: Math.min(signalStrength + 0.1, 1)  // Base opacity on actual signal flow
+              opacity: Math.min(Math.abs(weight) + 0.2, 1)
             });
             
             const start = inputNeurons[i].position;
@@ -262,7 +288,7 @@
             const direction = end.clone().sub(start);
             const length = direction.length();
             
-            const thickness = Math.abs(weight) * 0.15;  // Keep thickness based on weight
+            const thickness = Math.abs(weight) * 0.15;
             const cylinderGeometry = new THREE.CylinderGeometry(
               thickness, thickness, length, 8, 1
             );
@@ -282,14 +308,11 @@
         // Hidden to output connections
         for (let i = 0; i < 2; i++) {
           const weight = network.weights2[i];
-          const activation = network.hiddenActivations[i];
-          const signalStrength = Math.abs(weight * activation);  // How much signal flows through
-          
           const color = weight > 0 ? 0x88ffff : 0xff8888;
           const material = new THREE.MeshBasicMaterial({ 
             color: color,
             transparent: true,
-            opacity: Math.min(signalStrength + 0.2, 1)  // Base opacity on actual signal flow
+            opacity: Math.min(Math.abs(weight) + 0.2, 1)
           });
           
           const start = hiddenNeurons[i].position;
@@ -297,7 +320,7 @@
           const direction = end.clone().sub(start);
           const length = direction.length();
           
-          const thickness = Math.abs(weight) * 0.15;  // Keep thickness based on weight
+          const thickness = Math.abs(weight) * 0.15;
           const cylinderGeometry = new THREE.CylinderGeometry(
             thickness, thickness, length, 8, 1
           );
@@ -322,13 +345,13 @@
 
       // Update the updateNeuronVisuals function
       function updateNeuronVisuals() {
-        // Input neurons
+        // Update input neurons (no bias color changes)
         inputNeurons.forEach((neuron, i) => {
           const intensity = network.inputActivations[i] * 0.8 + 0.2;
           neuron.material.opacity = intensity;
         });
 
-        // Hidden neurons
+        // Update hidden neurons
         hiddenNeurons.forEach((neuron, i) => {
           const intensity = network.hiddenActivations[i] * 0.8 + 0.2;
           neuron.material.opacity = intensity;
@@ -346,7 +369,7 @@
           }
         });
 
-        // Output neuron
+        // Update output neuron
         const outputIntensity = network.outputActivation * 0.8 + 0.2;
         outputNeuronMesh.material.opacity = outputIntensity;
         
@@ -440,21 +463,9 @@
       document.getElementById("stepButton").addEventListener("click", () => {
         isPlaying = false;
         document.getElementById("playButton").textContent = "▶️";
-        
-        // Complete any in-progress step
         while (currentLayer !== 0 || currentSample !== null) {
           stepLayer();
         }
-        
-        // Do the next complete step
-        currentSample = trainingData[currentDataIndex];
-        
-        // Do a complete forward pass first to show activations
-        network.forward(currentSample.inputs);
-        updateNeuronVisuals();
-        updateConnections();
-        
-        // Then do the training step
         stepLayer();
       });
 
@@ -481,13 +492,13 @@
       const style = document.createElement("style");
       style.textContent = `
         .network-label {
-          position: absolute;
           color: white;
           font-family: monospace;
           font-size: 12px;
           padding: 2px 4px;
           pointer-events: none;
           text-shadow: 1px 1px 1px black;
+          white-space: nowrap;
         }
         #lossGraph {
           position: absolute;
@@ -511,121 +522,108 @@
       `;
       document.head.appendChild(style);
 
-      // Create overlay container
-      const labelContainer = document.createElement("div");
-      labelContainer.style.position = "absolute";
-      labelContainer.style.top = "0";
-      labelContainer.style.left = "0";
-      labelContainer.style.width = "100%";
-      labelContainer.style.height = "100%";
-      labelContainer.style.pointerEvents = "none";
-      document.body.appendChild(labelContainer);
-
-      // Function to convert 3D position to screen position
-      function getScreenPosition(position, camera) {
-        const vector = position.clone();
-        vector.project(camera);
-
-        return {
-          x: (vector.x * 0.5 + 0.5) * window.innerWidth,
-          y: (-vector.y * 0.5 + 0.5) * window.innerHeight,
-        };
+      // Helper to create a CSS2DObject label
+      function createLabel(text, offsetX = 0, offsetY = 0) {
+        const div = document.createElement('div');
+        div.className = 'network-label';
+        div.textContent = text;
+        const label = new CSS2DObject(div);
+        label.position.set(offsetX, offsetY, 0);
+        return label;
       }
 
-      // Update network text
-      function updateNetworkText() {
-        labelContainer.innerHTML = "";
+      // Create labels once and store references for updates
+      const labels = {
+        inputValues: [],
+        hiddenValues: [],
+        hiddenBiases: [],
+        outputValue: null,
+        outputBias: null,
+        inputToHiddenWeights: [],
+        hiddenToOutputWeights: []
+      };
 
+      // Input neuron labels
+      inputNeurons.forEach((neuron, i) => {
+        const label = createLabel('0.00', -0.8, 0.5);
+        neuron.add(label);
+        labels.inputValues.push(label);
+      });
+
+      // Hidden neuron labels (value + bias)
+      hiddenNeurons.forEach((neuron, i) => {
+        const valueLabel = createLabel('0.00', 0, 0.6);
+        const biasLabel = createLabel('b:0.00', 0, -0.6);
+        neuron.add(valueLabel);
+        neuron.add(biasLabel);
+        labels.hiddenValues.push(valueLabel);
+        labels.hiddenBiases.push(biasLabel);
+      });
+
+      // Output neuron labels (value + bias)
+      labels.outputValue = createLabel('0.00', 0.8, 0.5);
+      labels.outputBias = createLabel('b:0.00', 0.8, -0.5);
+      outputNeuronMesh.add(labels.outputValue);
+      outputNeuronMesh.add(labels.outputBias);
+
+      // Weight labels for input->hidden connections
+      for (let j = 0; j < 2; j++) {
+        labels.inputToHiddenWeights[j] = [];
+        for (let i = 0; i < 2; i++) {
+          const midPoint = new THREE.Vector3().lerpVectors(
+            inputNeurons[i].position,
+            hiddenNeurons[j].position,
+            0.25
+          );
+          const label = createLabel('w:0.00');
+          label.position.copy(midPoint);
+          label.position.y += 0.3;
+          scene.add(label);
+          labels.inputToHiddenWeights[j].push(label);
+        }
+      }
+
+      // Weight labels for hidden->output connections
+      for (let i = 0; i < 2; i++) {
+        const midPoint = new THREE.Vector3().lerpVectors(
+          hiddenNeurons[i].position,
+          outputNeuronMesh.position,
+          0.25
+        );
+        const label = createLabel('w:0.00');
+        label.position.copy(midPoint);
+        label.position.y += 0.3;
+        scene.add(label);
+        labels.hiddenToOutputWeights.push(label);
+      }
+
+      // Update network text - now just updates existing labels
+      function updateNetworkText() {
         // Input values
         inputNeurons.forEach((neuron, i) => {
-          const value = network.inputActivations[i].toFixed(2);
-          const screenPos = getScreenPosition(neuron.position.clone(), camera);
-
-          const label = document.createElement("div");
-          label.className = "network-label";
-          label.textContent = value;
-          label.style.left = screenPos.x - 30 + "px";
-          label.style.top = screenPos.y - 20 + "px";
-          labelContainer.appendChild(label);
+          labels.inputValues[i].element.textContent = network.inputActivations[i].toFixed(2);
         });
 
         // Hidden layer values and biases
         hiddenNeurons.forEach((neuron, i) => {
-          const value = network.hiddenActivations[i].toFixed(2);
-          const bias = network.bias1[i].toFixed(2);
-          const screenPos = getScreenPosition(neuron.position.clone(), camera);
-
-          const valueLabel = document.createElement("div");
-          valueLabel.className = "network-label";
-          valueLabel.textContent = value;
-          valueLabel.style.left = screenPos.x - 20 + "px";
-          valueLabel.style.top = screenPos.y - 20 + "px";
-          labelContainer.appendChild(valueLabel);
-
-          const biasLabel = document.createElement("div");
-          biasLabel.className = "network-label";
-          biasLabel.textContent = `b:${bias}`;
-          biasLabel.style.left = screenPos.x - 20 + "px";
-          biasLabel.style.top = screenPos.y + 20 + "px";
-          labelContainer.appendChild(biasLabel);
+          labels.hiddenValues[i].element.textContent = network.hiddenActivations[i].toFixed(2);
+          labels.hiddenBiases[i].element.textContent = `b:${network.bias1[i].toFixed(2)}`;
         });
 
         // Output value and bias
-        const outputValue = network.outputActivation.toFixed(2);
-        const outputBias = network.bias2.toFixed(2);
-        const outputScreenPos = getScreenPosition(
-          outputNeuronMesh.position.clone(),
-          camera
-        );
+        labels.outputValue.element.textContent = network.outputActivation.toFixed(2);
+        labels.outputBias.element.textContent = `b:${network.bias2.toFixed(2)}`;
 
-        const outputLabel = document.createElement("div");
-        outputLabel.className = "network-label";
-        outputLabel.textContent = outputValue;
-        outputLabel.style.left = outputScreenPos.x + 20 + "px";
-        outputLabel.style.top = outputScreenPos.y - 20 + "px";
-        labelContainer.appendChild(outputLabel);
-
-        const outputBiasLabel = document.createElement("div");
-        outputBiasLabel.className = "network-label";
-        outputBiasLabel.textContent = `b:${outputBias}`;
-        outputBiasLabel.style.left = outputScreenPos.x + 20 + "px";
-        outputBiasLabel.style.top = outputScreenPos.y + 20 + "px";
-        labelContainer.appendChild(outputBiasLabel);
-
-        // Weight values
+        // Weight labels input->hidden
         network.weights1.forEach((weights, j) => {
           weights.forEach((weight, i) => {
-            const midPoint = new THREE.Vector3().lerpVectors(
-              inputNeurons[i].position,
-              hiddenNeurons[j].position,
-              0.25
-            );
-            const screenPos = getScreenPosition(midPoint, camera);
-
-            const label = document.createElement("div");
-            label.className = "network-label";
-            label.textContent = `w:${weight.toFixed(2)}`;
-            label.style.left = screenPos.x + "px";
-            label.style.top = screenPos.y - 10 + "px";
-            labelContainer.appendChild(label);
+            labels.inputToHiddenWeights[j][i].element.textContent = `w:${weight.toFixed(2)}`;
           });
         });
 
-        // Output weights
+        // Weight labels hidden->output
         network.weights2.forEach((weight, i) => {
-          const midPoint = new THREE.Vector3().lerpVectors(
-            hiddenNeurons[i].position,
-            outputNeuronMesh.position,
-            0.25
-          );
-          const screenPos = getScreenPosition(midPoint, camera);
-
-          const label = document.createElement("div");
-          label.className = "network-label";
-          label.textContent = `w:${weight.toFixed(2)}`;
-          label.style.left = screenPos.x + "px";
-          label.style.top = screenPos.y - 10 + "px";
-          labelContainer.appendChild(label);
+          labels.hiddenToOutputWeights[i].element.textContent = `w:${weight.toFixed(2)}`;
         });
       }
 
@@ -714,6 +712,28 @@
         lossValue.textContent = `Sample Loss: ${currentLoss.toFixed(4)} | Epoch Loss: ${currentEpochLoss.toFixed(4)} | Epoch: ${epoch}`;
       }
 
+      // Learning rate slider - directly adjusts weights
+      const lrSlider = document.getElementById('learningRateSlider');
+      const lrValue = document.getElementById('lrValue');
+      lrSlider.addEventListener('input', () => {
+        learningRate = parseFloat(lrSlider.value);
+        lrValue.textContent = learningRate.toFixed(1);
+        
+        // Apply gradients with current learning rate when paused
+        if (!isPlaying && network.lastGradients) {
+          const g = network.lastGradients;
+          network.weights1 = g.baseWeights1.map((w, i) => [
+            w[0] + learningRate * g.weights1[i][0],
+            w[1] + learningRate * g.weights1[i][1]
+          ]);
+          network.weights2 = g.baseWeights2.map((w, i) => w + learningRate * g.weights2[i]);
+          network.bias1 = g.baseBias1.map((b, i) => b + learningRate * g.bias1[i]);
+          network.bias2 = g.baseBias2 + learningRate * g.bias2;
+          updateConnections();
+          updateNeuronVisuals();
+        }
+      });
+
       // ANIMATE
       function animate() {
         requestAnimationFrame(animate);
@@ -726,6 +746,7 @@
         drawLossGraph();
         controls.update();
         renderer.render(scene, camera);
+        labelRenderer.render(scene, camera);
       }
       animate();
 
@@ -734,6 +755,7 @@
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
+        labelRenderer.setSize(window.innerWidth, window.innerHeight);
       });
       
 
