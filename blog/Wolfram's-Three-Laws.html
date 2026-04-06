@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="James Wiles personal website - blog, experiments, research, and links">
+    <meta name="author" content="James K. Wiles">
+
+    <meta property="og:site_name" content="James Wiles Blog">
+    <meta property="og:type" content="article" />
+    
+    <meta property="og:title" content="Wolfram's Three Laws">
+    <meta property="og:description" content="Computational Equivalence, Boundedness, and Reduciblity">
+    <meta property="og:url" content="https://jameswiles.com/blog/Wolfram's-Three-Laws.html">
+    <meta property="og:image" content="https://jameswiles.com/blog/images/acorn.png">
+
+    <meta name="twitter:card" content="Computational Equivalence, Boundedness, and Reduciblity">
+    <meta name="twitter:creator" content="@_jameswiles">
+
+    <title>Wolfram's Three Laws | James Wiles Blog</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked@16/lib/marked.umd.min.js"></script>
+    <script data-goatcounter="https://synetic.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/">James Wiles Blog</a>
+        </nav>
+    </header>
+    <main id="content"></main>
+    <pre id="markdown" style="display: none">
+# Wolfram's Three Laws
+*James K. Wiles | 2026-04-06*
+
+# Computational Equivalence
+All systems can be effectively modelled as a computational process. The means that there is nothing special about any one particular system versus another, and that the value of figuring something fundamental out in one domain is transferrable to other domains.
+
+# Computational Boundedness
+Systems have bounds in practice, which limit what they do. If all systems are computationally equivalent, what makes them different is the how much computation they can do and where their boundaries lie in comparison to one another.
+
+# Computational Reducibility
+Systems vary by an inherent ability to be fully or partially modelled by a compressed representation. If all systems or equivalent and only boundedness separates them, then dynamics can be introduced by the interaction of reducible and irreducible processes, allowing complexity to emerge.
+    </pre>
+    <script>
+        document.getElementById('content').innerHTML = marked.parse(document.getElementById('markdown').textContent);
+    </script>
+    <footer>
+        <p>visitors: <span id="visitors"></span></p>
+    </footer>
+    <script>
+        fetch(`https://synetic.goatcounter.com/counter/${encodeURIComponent(location.pathname)}.json`)
+            .then(res => res.json()).then(data => document.querySelector('#visitors').textContent = data.count);
+    </script>
+</body>
+
+</html>
