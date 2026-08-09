@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="James Wiles personal website - blog, experiments, research, and links">
+    <meta name="author" content="James K. Wiles">
+
+    <meta property="og:site_name" content="James Wiles Blog">
+    <meta property="og:type" content="article" />
+
+    <meta property="og:title" content="Implementing Computational Law in Wolfram Language for Governance of Artificial Intelligence">
+    <meta property="og:description" content="Executable law: Reified Input/Output Logic in Wolfram Language, ChatGPT experiments, and AI governance">
+    <meta property="og:url" content="https://jameswiles.com/blog/Implementing-Computational-Law-in-Wolfram-Language-for-Governance-of-Artificial-Intelligence.html">
+    <meta property="og:image" content="https://jameswiles.com/blog/images/governor-cute-ai.png">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:creator" content="@_jameswiles">
+
+    <title>⚖️ Implementing Computational Law in Wolfram Language for Governance of Artificial Intelligence | James Wiles Blog</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked@16/lib/marked.umd.min.js"></script>
+    <script data-goatcounter="https://synetic.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/">James Wiles Blog</a>
+        </nav>
+    </header>
+    <main id="content"></main>
+    <pre id="markdown" style="display: none">
+# ⚖️ Implementing Computational Law for Governance of Artificial Intelligence
+*James K. Wiles | 2024-01-12*
+
+*Originally published on [Wolfram Community](https://community.wolfram.com/groups/-/m/t/3101079), Staff Picks, January 2024*
+
+![Governor cute AI](/blog/images/governor-cute-ai.png)
+
+*"Fire the nukes!" says the Government AI. "Why?!" you ask, as President of Mars.*
+
+*The Chief Machine Officer explains "It's a black-box sir, we have no idea. But, in simulation it does what we think is right 99% of the time."*
+
+*Scenario B: "It's a black-box sir, but it has a computational law obligation to defend us at all costs, which it adheres to 99% of the time, else it gets digitally executed."*
+
+### The Big Questions:
+
+Is it possible to communicate with machines in a way that has the benefits of first-order-logic, while keeping the expressiveness of human natural language?
+
+If people have been trying to do this for hundreds of years already, how does the advent of AI change things now?
+
+Could this technology be useful for AI Governance?
+
+### Identified Problems and Motivation:
+
+It will be safe to assume that the majority of what we consider as work in today's world could, and probably will, be taken over by robots and artificial intelligence. In a future where machines rule our lives, our ability to communicate with them effectively will be of primary importance. Although breakthrough human to machine communication has taken place recently, there are inherent shortfalls with the current approach, which I will refer to as the bottom-up approach. What I will investigate here are the benefits and limitations of making progress on a top-down approach as well. The fundamental problem is that human language is designed to capture the full experiences of our world, making the language necessarily ambiguous. LLMs have demonstrated an ability to communicate in this style, but at the cost of making their reasoning more and more opaque. In the context of law and legal reasoning, the risk of ambiguity causing harm is great, and the benefits of a new technology called computational law are clear. The motivation for this project is to investigate how the effective use of formal language in computational law could increase the likelihood of a successful human and AI co-existence.
+
+### Methodology:
+
+First we will be reimplementing the work done by Livio Robaldo, Cesare Bartolini, Gabriele Lenzini in the excellent paper on the DAPRECO knowledge base, into Wolfram Language.
+
+Secondly we will be exploring ideas around implementation feasibility, identifying useful fields of knowledge, and determining suitable directions for continued work on this topic.
+
+We will be using ChatGPT 4 (11 Jan 2024) to generate Wolfram Code from English statements and testing their validity. I will use block quote ```` ```James ```` for prompts and ```` ```ChatGPT ```` for responses.
+
+### Scope:
+
+Practical implementation, in Wolfram Language, of Reified Input/Output Logic.
+
+Illustrate via code examples some ideas from computational law.
+
+Broadly discuss some of the bigger picture ideas to take the project further.
+
+### Definitions:
+
+"Computational Law is the branch of legal informatics concerned with the automation of legal reasoning. While there are many possible applications of Computational Law, the primary focus of work in the field today is compliance management, i.e. the development and deployment of computer systems capable of assessing, facilitating, or enforcing compliance with rules and regulations." (Genesereth)
+
+## Introduction:
+
+We already trust black-box systems to do many mundane things in everyday life, but how can we govern the AIs that end up running everything? One place to start finding solutions is where all current governance is already encoded: legal documents. The challenge of merging human language and machine rules is enormous, but Wolfram Language has been working on this problem in a top-down way for many years. Now, with the advent of LLMs, a viable route to bridge to the bottom-up approach exists. The solutions of AI governance will not be based solely on an agreed communication standard between computers and people, but it is a necessary prerequisite to avoid many of the "weaknesses of intelligence" machines are capable of.
+
+### Why is computational law not a thing yet?
+
+Like with all technology, the adoption of new tools is not only about how advanced the technology is or how much value it can offer, but also about many other forcing functions that make the individual choices of human adoption impossible to predict. An observation from the advancements that DAPRECO made is that the massive legal obligations that GDPR, and other privacy laws, brought to Europe pushed money into tools and research for computational law. A similar observation could be made during the aftermath of the 2008 great financial crisis, when the regulatory burden suddenly skyrocketed.
+
+The truth is that this is a legitimately hard technical problem to solve, and progress accelerates as business needs arise. The next logical question is whether the concern for a species-level extinction event will, by itself, be enough to finally push computational law mainstream.
+
+### Why is human language not computable?
+
+Ambiguity is built into human communication because we are forced to coarse-grain our input data due to biological limitations on computation. This causes a type of compression that is lossy, with imperfect recall, and additional layers of abstract loose meaning. Abstractions in code are effectively a type of lossless compression, which is what gives formal languages like maths (almost) deterministic behaviour.
+
+One of the intuitions behind what made ChatGPT successful at sounding more "human" was to deliberately turn down the probability on next-token prediction; this added the "just right" amount of randomness to outputs. This shows that humans (and by extension human language) are not deterministic - at least from the perspective of other humans - and it highlights the inherent limitation of this bottom-up approach.
+
+Modern English is a relatively flexible language, in that you are "allowed" to bend the rules dramatically and still communicate information rather well. Other forms of human language that make it difficult to communicate the deterministic world are the use of figurative language, analogies, sarcasm, and the ability to infer tone from context, which can lead a reader to different conclusions compared to what the text explicitly states.
+
+Some of the success of the spread of English has been attributed to its malleability, which is not ideal for computational language. Differences between written and spoken communication can diverge over time, causing additional ambiguity when transcribing verbal communication into a textual context.
+
+English being a phonetic language also adds unreliability to exact written translations, because human vocal cords have more utterances than what we know how to represent textually. Chinese is interesting here, because the written characters were designed to be a standard that can be spoken in many different languages, making it more of an inherently "symbolic" language.
+
+User-input (in the context of application development) is always a challenge for any programmer. No matter how well your code is written, users will find ways to create input that breaks your code accidentally, and often on purpose to exploit bugs. "User input" in computational law could be quotes, testimonies, or descriptions of evidence that will be in human language with no control over formatting according to any rules we set.
+
+![Car with SQL injection license plate](/blog/images/drop-database-license-plate.png)
+
+*A car with a custom license plate that has code in it that, when read by software, can cause the deletion of an entire database. No one expects a license plate to have executable code in it, so developers likely save time by avoiding user input "sanitisation" steps.*
+
+### Legalese as a language
+
+We are going to need at least some rules for converting human language into code, and thankfully law already has many conventions and rules regarding proper use of legal language.
+
+Legalese is the closest to a formal spoken language due to having a long history of implications for being exact. The position of a single comma can affect the legal implications of a whole document (a classic bug in code too). Legalese can sometimes be deliberately vague or designed to be obtuse, which is still a very deliberate use of the language that can be used to one's advantage in legal matters.
+
+Legal philosophy even takes into account things like "the letter of the law versus spirit of the law", which is a legally valid way of saying that even though the text says one thing, the "spirit" of the intention of the law is legally enforceable. The equivalent, in an AI world, of the Reasonable Person Standard would need to be something like "The Reasonable Machines Standard". This likely will need to have niche standards for what will become a plethora of Professional AIs, like a "Licensed Trolley Driver AI".
+
+We need some rules for the legal statements. Law already has many conventions regarding proper use of legal language.
+
+### Where has computational law been effective
+
+Accounting software used to submit tax filings to determine your legal financial obligations. Some of the reasons why it works well here are that inputs, and outputs, are mostly numbers, like dates, amounts, and reference codes. The legal reasoning is based on a lot of mathematics. All the facts are already digitised and inputs are highly standardised, with evidence being clearly linked to original source documents.
+
+Illegal actions still happen due to manipulation of translations from the real world to accounting rules, and interpretation of Tax Law.
+
+So the value created here is because computers are better with numbers, and the use of computation to calculate tax has been used since the advent of the abacus.
+
+### Current Approaches:
+
+Much work has been put into this field already, with specific XML languages like Akoma Ntoso and LegalRuleML. We will investigate Reified I/O Logic that was proposed in a 2021 paper. Exploring the ability of Mathematica to create legal contracts that are computable, and identifying what is missing to make it possible. The latest attempts involve massive Large Language Model technology, with techniques using embedding spaces, to try and skip some of the technical issues with writing code.
+
+#### Top-down Approach (Writing Code)
+
+This approach involves making sure that information, in the form of programs, is computational first and can be either read by humans or converted into human readable form. The challenge with this approach is the limited cross-domain experience between computer program writers and lawyers. There is code, like Wolfram Language, that is as close to human readable as you can get, however there still exists a gap between the practical application of the law as it is practiced and taught today and getting lawyers to write code.
+
+#### Bottom-up Approach (Writing English)
+
+The incredible success of the transformer models from OpenAI has demonstrated that having conversations with machines is now possible, with limiting factors like hallucinations and training data being bigger obstacles than the ability for machines to interpret human language.
+
+We can use LLMs to infer understanding of situations and compare with the output of the formal language, to create computationally valid statements, allowing us to keep our human language and develop parsing techniques between the two.
+
+This situation of knowing it would be better to speak in a formal language, so computers can compute our words, reminds me of the period in China when serious consideration went into adopting English as the official language. There were clear benefits for trade and literacy at that time but, with the advent of digital communication, the benefits of using a pictographic, non-phonetic language were able to re-emerge with several benefits in the realm of computers. This demonstrates a kind of unforeseen pre-adaptation that is potentially similar to keeping human language in the time of LLMs.
+
+One of the most important considerations we have regarding the adoption of computational law is that much of the law might never be convertible to code. Historical law will likely contain many loopholes or contradictions that will not be beholden to rules or computable. The other reason is due to the importance of case law, which is basically all the results of legal proceedings, which might be better off just being a source of data and facts, rather than coded into a machine.
+
+## Getting text into code
+
+Several standards exist for this realm including the following:
+
+#### Web Ontology Language
+
+"OWL 2 is a language for expressing ontologies. The term ontology has a complex history both in and out of computer science, but we use it to mean a certain kind of computational artifact - i.e., something akin to a program, an XML schema, or a web page - generally presented as a document. An ontology is a set of precise descriptive statements about some part of the world (usually referred to as the domain of interest or the subject matter of the ontology). Precise descriptions satisfy several purposes: most notably, they prevent misunderstandings in human communication and they ensure that software behaves in a uniform, predictable way and works well with other software." [https://www.w3.org/2007/OWL/draft/ED-owl2-primer-20090921/](https://www.w3.org/2007/OWL/draft/ED-owl2-primer-20090921/)
+
+#### The Akoma Ntoso framework
+
+"Complexity in XML software and XML document management arises in two different situations:
+For tool implementers, when a large number of types increases the amount of code necessary for handling them in presentation, editing, etc.
+For document encoders (e.g., in our case, the legal drafter) cannot find the most appropriate name or label to describe a document fragment and needs to choose between a varying number of imprecise and unsatisfying alternatives."
+[http://www.akomantoso.org/?page_id=45](http://www.akomantoso.org/?page_id=45)
+
+![Bottom-Up Approach A](/blog/images/bottom-up-approach-a.png)
+
+*This is the flow of an approach that relies heavily on specific rules and XML formatting.*
+
+![Bottom-Up Approach B](/blog/images/bottom-up-approach-b.png)
+
+*This approach relies on use of machine learning techniques that bypasses the need for explicit specifications at each step.*
+
+## Input/Output Logic
+
+"Input/output logic is a branch of conditional logic, broadly conceived, whose distinguishing feature is that it does not make any assumptions about the ultimate nature of the relation that holds between a set of conditions and its consequences. That may not sound like much, but it makes a real difference, both formally and philosophically."
+
+Input/Output Logic is a logical framework where inputs yield specific outputs. This logic is structured around if-then rules, termed Input/Output pairs. The left-hand side (LHS) and right-hand side (RHS) of these pairs are expressions within a specified logical language. Axioms like Strengthening the Input (SI), Weakening the Output (WO), etc. modify these pairs to derive different outputs. This approach is used to address challenges in representing norms, which are different from declarative statements.
+
+In simple terms, think of it as a system where certain inputs (conditions, scenarios, or facts) lead to specific outputs (legal consequences, obligations, or conclusions).
+
+### Define Basic Input/Output Pairs:
+
+In Wolfram Language, an Input/Output pair (a, b) can be represented as a rule, like a -> b. Here, 'a' is a condition or input, and 'b' is the output or consequence.
+
+Suppose you have a legal norm where if a condition a is true, then an action b should be taken.
+
+```
+In[]:= inputOutputPair = a → b
+
+Out[]= a → b
+```
+
+This rule states that when a is given as input, b is produced as output. You can create a list of such pairs to represent multiple legal norms. For instance:
+
+```
+In[]:= legalNorms = {a → b, c → d, e → f}
+
+Out[]= {a → b, c → d, e → f}
+```
+
+Each pair follows the format condition -> action, mirroring the if-then structure of legal reasoning in a computational context.
+
+```
+In[]:= (*If a person is an adult (isAdult),then they are allowed to vote (canVote).*)
+legalNorm = isAdult → canVote;
+
+(*You can test this rule by providing an input and seeing if the output follows logically.*)
+input = isAdult
+output = input /. legalNorm
+
+Out[]= isAdult
+
+Out[]= canVote
+```
+
+### Implementing Axioms and Logic
+
+Since the LHS and RHS of these pairs are formulas, we can utilize Wolfram Language's capabilities to handle logical expressions and their manipulations. For axioms like Strengthening the Input (SI) or Weakening the Output (WO), we'll define functions that modify these rules based on the axioms' logic.
+
+Strengthening the Input (SI): This axiom allows for expanding the input condition while maintaining the output. For example, if you have a rule a -> x, and a is logically included in a broader condition b, you can derive a new rule b -> x.
+
+```
+In[]:= strengthenInput[rule_, broaderCondition_] := broaderCondition → rule〚2〛;
+
+(*This rule represents that having a driver's license allows one to drive a car.*)
+legalNorm = hasDriverLicense → canDriveCar;
+
+(*Apply strengthenInput to strengthen the condition
+from having a driver's license to having a commercial license.*)
+strongerNorm = strengthenInput[legalNorm, hasCommercialLicense];
+
+input = hasCommercialLicense
+output = input /. strongerNorm
+
+Out[]= hasCommercialLicense
+
+Out[]= canDriveCar
+```
+
+Weakening the Output (WO): This axiom allows for the relaxation of the output condition while maintaining the same input.
+
+```
+In[]:= weakenOutput[rule_, weakerPermission_] := rule〚1〛 → weakerPermission;
+
+legalNorm = hasDriverLicense → canDriveCar;
+
+(*Modify the rule to reflect a weaker output from canDriveCar to a more general canOperateVehicle.*)
+weakerNorm = weakenOutput[legalNorm, canOperateVehicle];
+
+input = hasDriverLicense
+output = input /. weakerNorm
+
+Out[]= hasDriverLicense
+
+Out[]= canOperateVehicle
+```
+
+Conjunction of Output (AND): This axiom allows combining two pairs (a,x) and (a,y) into a single pair (a,x∧y), representing the conjunction of the outputs for the same input.
+
+```
+In[]:= (*These rules represent two different conditions that lead to specific outputs.*)
+rule1 = hasDriverLicense → canDriveCar;
+rule2 = hasDriverLicense → knowsTrafficLaws;
+
+(*This function combines the outputs of two rules with the same input into a single output.*)
+conjoinOutput[rule1_ /; First[rule1] === First[rule2], rule2_] := First[rule1] → (Last[rule1] && Last[rule2]);
+conjoinOutput[_, _] := "Inputs do not match";
+
+(*Combine the outputs of rule1 and rule2.*)
+combinedRule = conjoinOutput[rule1, rule2];
+
+input = hasDriverLicense
+output = input /. combinedRule
+
+Out[]= hasDriverLicense
+
+Out[]= canDriveCar && knowsTrafficLaws
+```
+
+Identity (ID): This ensures that any input is also considered as a valid output. This is particularly important in the context of legal reasoning, as it allows for self-referential norms. Identity is important because it allows inputs to be included inside of outputs, providing transparency by showing what facts influenced the outcome.
+
+```
+In[]:= identify[input_] := input → input;
+
+(*A person being a citizen is inherently recognized,
+the fact is self-affirming and doesn't require additional conditions*)
+citizenshipRule = identify[isCitizen];
+
+input = isCitizen
+output = input /. citizenshipRule
+
+Out[]= isCitizen
+
+Out[]= isCitizen
+```
+
+Disjunction of Input (OR): Used to combine multiple inputs leading to the same output. This is not useful in our context, because we want to remember which rule caused the end output. This does illustrate the importance of input for legal reasoning about conclusions.
+
+```
+disjoinInput[ruleList_] := Append[ruleList, Or @@ (#〚1〛 & /@ ruleList) → #〚2〛 &@First[ruleList]];
+
+(*Either condition leads to the same result*)
+rule1 = hasDriverLicense → eligibleForParkingDiscount;
+rule2 = hasSeniorCitizenCard → eligibleForParkingDiscount;
+
+combinedRule = disjoinInput[{rule1, rule2}];
+
+(*All outputs are the same, losing important information about what caused the discount*)
+output1 = (hasDriverLicense || hasSeniorCitizenCard) /. combinedRule
+output2 = (hasDriverLicense) /. combinedRule
+output3 = (hasSeniorCitizenCard) /. combinedRule
+
+Out[]= eligibleForParkingDiscount
+
+Out[]= eligibleForParkingDiscount
+
+Out[]= eligibleForParkingDiscount
+```
+
+Aggregative Cumulative Transitivity (ACT): Cumulative transitivity is the idea that if an input leads to an output, and that output combined with the original input leads to another output, then the original input should directly lead to this second output as well. From (a, x) and (a ∧ x, y) to (a, y). However, this leads to paradoxes (especially when combined with WO). ACT modifies the approach by combining the outputs when the inputs are the same, rather than extending obligations unconditionally.
+
+```
+(*You should work out daily, and if you work out daily you should also eat plenty*)
+rule1 = youShould → workOutDaily;
+rule2 = (youShould && workOutDaily) → eatPlenty;
+
+(*Paradoxically applying Cumulative Transitivity alone, `youShould → eatPlenty`*)
+acumulate Transitivity[rule1_, rule2_] :=
+    If[rule1〚2〛 === rule2〚1, 2〛, rule1〚1〛 → rule2〚2〛, "No Transitivity"];
+aggregatedParadox = acumulateTransitively[rule1, rule2]
+
+(*By applying aggregation you resolve the paradox, `youShould → workOutDaily&&eatPlenty`*)
+aggregateAcumulative Transitivity[rule1_, rule2_] :=
+    If[rule1〚2〛 === rule2〚1, 2〛, rule1〚1〛 → (rule1〚2〛 && rule2〚2〛), "No Transitivity"];
+aggregatedRule = aggregateAcumulative Transitivity[rule1, rule2]
+
+Out[]= youShould → eatPlenty
+
+Out[]= youShould → workOutDaily && eatPlenty
+```
+
+Output Equivalence (EQ) and outfamily(O, A) meta structure: Applicable where different expressions can be logically inferred to mean the same thing if they can be shown to belong to the same family. I'll only illustrate with a paradox where this is useful, as the details are beyond scope for now:
+
+"The cottage must not have a fence or a dog" (>, ¬(f ∨ d)) ∈ O
+
+"If the cottage has a dog it must have both a fence and a warning sign." (d, f ∧ w) ∈ O
+
+Now suppose the cottage has a dog, you are in violation of the law; can you logically infer further obligations?
+
+### Implementing Legal Reasoning
+
+Now we need to apply the Input/Output logic for legal reasoning. This involves defining sets of logical pairs to represent obligations, permissions, and constitutive norms within a legal framework. Obligations and permissions are applied based on established facts, while constitutive norms define these facts, creating a dynamic system of legal reasoning.
+
+![Facts to Obligations and Permissions through Institutional Facts](/blog/images/norms-to-obligations.png)
+
+*Rule pairs transform facts into Obligations and Permission through Institutional Facts first.*
+
+Obligations (O): These pairs represent legal obligations, where one condition necessitates a specific action or outcome.
+
+```
+In[]:= (*Obligations such as adults needing to pay taxes and car owners needing to have insurance*)
+obligationRules = {
+    ("isAdult" → "payTaxes"),
+    ("ownsCar" → "hasInsurance")
+}
+
+Out[]= {isAdult → payTaxes, ownsCar → hasInsurance}
+```
+
+Permissions (P): These pairs define what is permitted under certain conditions.
+
+```
+In[]:= (*Having a license permits driving,and being an employee grants office access*)
+permissionRules = {
+    ("hasLicense" → "canDrive"),
+    ("isEmployee" → "canAccessOffice")
+}
+
+Out[]= {hasLicense → canDrive, isEmployee → canAccessOffice}
+```
+
+Constitutive Norms (C): These define what counts as institutional facts.
+
+```
+In[]:= (*What counts as being an employee (signing a contract) and being an adult (reaching age 18)*)
+constitutiveRules = {
+    ("signedContract" → "isEmployee"),
+    ("age18" → "isAdult")
+}
+
+Out[]= {signedContract → isEmployee, age18 → isAdult}
+```
+
+## Utilising Reification
+
+Reification makes complex natural language statements concrete by formalizing them into objects so that ideas, processes, events, and similar abstract concepts can be operated on like a constant, and be added to recursively. A statement like "James is tall" can be transformed into a structured format using eventuality. For instance, "tallEvent James" becomes a formal logical expression using "tallEvent" representing the state of James being tall.
+
+### Eventualities
+
+Let's consider the sentence "Alice gives a book to Bob." Using reification, you could introduce eventualities to capture this scenario in more detail:
+
+- et: Eventuality for the giving action: (transfer et Alice Bob)
+- ei: Reify the book as an entity involved in the transfer: (involved ei Book)
+- ev: Recursive event on the et event indicating volition: "Alice voluntarily 'ev' gave the book to Bob"
+
+This reified approach separates the action from the objects involved in the transfer. Further properties can then apply to 'et' and 'ei' and be recursively reified into new eventualities.
+
+```
+In[]:= (*Define the 'transfer' predicate*)
+TransferEvent[subject_, object_, recipient_] := {subject, "transfers", object, "to", recipient};
+
+(*Define the 'voluntary' predicate*)
+VoluntaryEvent[event_] := {"Voluntarily", event};
+
+(*Representing the Transfer*)
+aliceGivesBookToBob = Transfer["Alice", "Book", "Bob"];
+
+(*Representing Voluntary Action*)
+aliceVoluntarilyTransfers = Voluntary[aliceGivesBookToBob];
+
+transferScenario = And[aliceGivesBookToBob, aliceVoluntarilyTransfers]
+
+(*TESTS*)
+isBookInvolvedTest = MemberQ[transferScenario〚1〛, "Book"]
+isAliceParticipantTest = MemberQ[transferScenario〚1〛, "Alice"]
+isVoluntaryTransferTest = MemberQ[transferScenario〚2〛, "Voluntarily"]
+
+Out[]= Transfer[Alice, Book, Bob] && Voluntary[Transfer[Alice, Book, Bob]]
+
+Out[]= True
+
+Out[]= True
+
+Out[]= False
+```
+
+### Implementing or′, not′ with respect to time
+
+Reified boolean operators are able to express complex relationships between eventualities, including time. Explicitly considering the time dimension of logical predicates is important in legal contexts as obligations often depend on timeframes.
+
+- or′ links multiple events, asserting the existence of at least one
+- not′ indicates the non-existence of an eventuality when another exists
+- RexistAtTime adds time t to any eventuality
+
+```
+In[]:= (*Define the or′ relation as a predicate*)
+or′[e_, e1_, e2_] := {"or", e, e1, e2};
+
+(*Define the not′ relation as a predicate*)
+not′[e1_, e2_] := {"not", e1, e2};
+
+(*Define the RexistAtTime predicate*)
+RexistAtTime[eventuality_, time_] := {"RexistAtTime", eventuality, time};
+
+(**Define the axiom for or′**)
+(*∀t∀e∀e1∀e2
+[((RexistAtTime e t) ∧ (or′ e e1 e2)) → ((RexistAtTime e1 t) ∨ (RexistAtTime e2 t))]*)
+AxiomOr′[t_, e_, e1_, e2_] :=
+    Implies[RexistAtTime[e, t] && or′[e, e1, e2], Or[RexistAtTime[e1, t], RexistAtTime[e2, t]]];
+
+(**Define the axiom for not′**)
+(*∀t∀e∀e1 [((RexistAtTime e t) ∧ (not′ e e1)) → ¬(RexistAtTime e1 t)]*)
+AxiomNot′[t_, e_, e1_] := Implies[RexistAtTime[e, t] && not′[e, e1], Not[RexistAtTime[e1, t]]];
+```
+
+John wants to be rich or get a job this year. Let's say we have eventuality e representing the desire that at least one of
+
+- e1 (John being rich); or
+- e2 (John getting a job) exists
+
+```
+In[]:= e1 = "BeingRich"; (*Eventuality for John being rich*)
+e2 = "GettingJob"; (*Eventuality for John getting a job*)
+e = "AchievingFinancialGoal"; (*Eventuality for the desire that at least one of e1 or e2 exists*)
+t = "EndOfYear"; (*Specific temporal point*)
+```
+
+Apply the axioms to check the consequences at time t
+
+```
+In[]:= (*The or′ axiom checks if John's ambition is achieved by meeting at least one goal*)
+AxiomOr′Result = AxiomOr′[t, e, e1, e2]
+
+(*The not′ axiom reflects on John's ambition after the
+year has passed to determine if he failed to achieve his goals*)
+AxiomNot′Result = AxiomNot′[t, e, e1] && AxiomNot′[t, e, e2]
+
+Out[]= {RexistAtTime, AchievingFinancialGoal, EndOfYear} && {or, AchievingFinancialGoal, BeingRich, GettingJob} →
+    {RexistAtTime, BeingRich, EndOfYear} || {RexistAtTime, GettingJob, EndOfYear}
+
+Out[]= ({RexistAtTime, AchievingFinancialGoal, EndOfYear} && {not, AchievingFinancialGoal, BeingRich} →
+    ! {RexistAtTime, BeingRich, EndOfYear}) &&
+    ({RexistAtTime, AchievingFinancialGoal, EndOfYear} && {not, AchievingFinancialGoal, GettingJob} →
+    ! {RexistAtTime, GettingJob, EndOfYear})
+```
+
+### Assertive Contextual Statements (ABox) and Terminological Declarative Statements (TBox)
+
+The ABox distinction consists of straightforward combinations of atomic statements, while the TBox can include more complex First Order Logic formulations. This separation simplifies managing large knowledge bases: ABox handles direct legal norms, whereas TBox deals with the intricate rules and definitions guiding these norms. Legal practitioners can easily contribute to developing the ABox, while TBox needs to be crafted by experts in knowledge representation.
+
+```
+In[]:= (*One way to implement typing in Wolfram Language*)
+aBox[content_] := {"Type" → "ABox", "Content" → content};
+tBox[content_] := {"Type" → "TBox", "Content" → content};
+getStatementType[statement_] := statement〚1, 2〛;
+```
+
+ABox statement types:
+
+"James is tall."
+
+"Alice gives a book to Bob."
+
+"Alice voluntarily gave the book to Bob"
+
+```
+In[]:= (*ABox Fact Statements*)
+statement1 = aBox[{"James is tall."}]
+statement2 = aBox[{"Alice gives a book to Bob."}]
+
+Out[]= {Type → ABox, Content → {James is tall.}}
+
+Out[]= {Type → ABox, Content → {Alice gives a book to Bob.}}
+```
+
+TBox statement types:
+
+"John wants to either be rich or get a job this year."
+
+"John does not want to be neither by the end of this year."
+
+```
+In[]:= (*TBox Rule Statements*)
+statement3 = tBox[{"John is rich or has a job now."}]
+statement4 = tBox[{"John does not want to be broke."}]
+
+Out[]= {Type → TBox, Content → {John is rich or has a job now.}}
+
+Out[]= {Type → TBox, Content → {John does not want to be broke.}}
+```
+
+### Composing documents
+
+Here is where the "rubber meets the road" of what we are trying to do with the bottom-up approach. Here is a more complex legal statement:
+
+English Statement:
+
+"Those who are not wearing a tie or those who are blond ought to leave the room."
+
+Formula in English:
+
+"For every individual x and for every time t, if it really exists that either x does not wear a tie t1 or x is blond, then the real existence of a "leaving" action from the room, performed by x, is obligatory"
+
+```
+∀{x,t} (∃{eo,en,eb,ew,t1} (
+    {"RexistAtTime", eo, t} ∧ or0(eo, en, eb) ∧ not0(en, ew) ∧ wearing0(ew, x, t1) ∧
+    tie(t1) ∧ blond0(eb, x) ∧ ∃el ({"RexistAtTime", el, t} ∧ leave0(el, x, Room)))) ∈ O
+```
+
+One can already see this is going to cause severe headaches. Just converting the formula to Wolfram Language gives:
+
+```
+In[]:= TraditionalForm[
+    ForAll[{x, t}, Exists[{eo, en, eb, ew, t1}, (RexistAtTime[eo, t] && or0[eo, en, eb] && not0[en, ew] &&
+        wearing0[ew, x, t1] && tie[t1] && blond0[eb, x]) &&
+        Exists[el, (RexistAtTime[el, t] && leave0[el, x, Room])]] ∈ O]]
+
+Out[]//TraditionalForm= ∀{x,t} (∃{eo,en,eb,ew,t1} ({RexistAtTime, eo, t} ∧ or0(eo, en, eb) ∧ not0(en, ew) ∧ wearing0(ew, x, t1) ∧
+    tie(t1) ∧ blond0(eb, x) ∧ ∃el ({RexistAtTime, el, t} ∧ leave0(el, x, Room)))) ∈ O
+```
+
+## Bridging the gap with LLMs
+
+Let's experiment with ChatGPT 4 (11 Jan 2024). Here is my initial prompt following a long thread of communication used to generate code for this notebook:
+
+### Statement A
+
+````
+```James
+We are now going to test your ability to use everything we have established so far. I need you
+to please convert some English legal statement in Reified Input/Output implemented in Wolfram
+Language. Think through each statement this step by step, show your reasoning and be diligent.
+This is a very important project to me and my career depends on it. If you make any errors I
+will inform you and you must correct them. Refer back to previous sections and use the
+attached paper for reference if needed. Good luck!
+```
+````
+
+````
+```ChatGPT
+To convert an English legal statement into a Reified Input/Output representation implemented in
+Wolfram Language, we need to follow a structured approach. Here's a step-by-step process:
+1. Identify the Legal Statement: Choose a specific legal statement. For example, "If a person drives a
+vehicle, they must have a valid driver's license."
+2. Break Down the Statement: Analyze the statement to identify the key elements. In this case, the
+elements are:
+- Conditional: Driving a vehicle
+- Obligation: Having a valid driver's license
+3. Reify the Elements: Each element in the statement is reified. In our example, driving a vehicle (eventuality
+evDrive) and having a license (eventuality evLicense) are reified. We introduce these eventualities
+in FOL terms.
+4. Apply Input/Output Logic: The statement is transformed into Input/Output logic form. Here, the
+condition (driving a vehicle) leads to the obligation (having a license). So, it can be represented as
+(evDrive, evLicense) in Input/Output pairs.
+5. Implement in Wolfram Language: Using the constructs we've previously established, translate this
+logic into Wolfram Language:
+
+In[]:= (*Define the Reified Events*)
+evDrive[person_] := {"Event", "Drive", person};
+evLicense[person_] := {"Event", "HasLicense", person};
+
+(*Represent the Legal Statement as an Input/Output Pair*)
+legalStatement = {evDrive["Person"], evLicense["Person"]};
+
+(*Implement the Check for the Legal Obligation*)
+checkLegalObligation[input_] := Module[{person = input〚2, 3〛},
+    (*Assuming a function that checks for a valid license*)If[ValidLicenseQ[person], True, False]];
+
+6. Testing and Validation: Test the implementation with various scenarios to ensure it behaves as
+expected. For instance, checking whether the obligation is fulfilled when a person drives.
+7. Iterate and Refine: Based on testing, refine the implementation to handle more complex scenarios or
+additional rules.
+This process involves a careful analysis of the legal statement, breaking it down into its fundamental
+components, and systematically building its representation in a formalized logic structure, which is
+then implemented in Wolfram Language. This approach ensures accuracy and adherence to the semantics
+of the original legal statement.
+```
+````
+
+- Observation 1: The sample code it generated for itself implements a made-up function called `ValidLicenseQ`
+
+````
+```James
+Legal Statement: "Those who are not wearing a tie or those who are blond ought to leave the room."
+```
+````
+
+````
+```ChatGPT
+...
+
+In[]:= (*Reify the Conditions and Obligation*)
+notWearingTie[person_] := {"Condition", "NotWearingTie", person};
+isBlond[person_] := {"Condition", "IsBlond", person};
+mustLeaveRoom[person_] := {"Obligation", "LeaveRoom", person};
+
+(*Implement the or[Prime] Logic:*)
+orPrime[condition1_, condition2_] := {"Or", condition1, condition2};
+
+(*Create the Legal Rule*)
+legalRule = orPrime[notWearingTie["Person"], isBlond["Person"]] → mustLeaveRoom["Person"];
+
+(*Define a function to check if the legal rule applies to a person*)
+applyLegalRule[person_, wearingTie_, isBlond_] :=
+    Module[{condition1, condition2}, condition1 = notWearingTie[person] /; ! wearingTie;
+    condition2 = isBlond[person] /; isBlond;
+    If[Or[condition1, condition2] === Undefined, False, True]];
+
+(*Test Scenarios*)
+test1 = applyLegalRule["Alice", True, False] (*Wearing a tie,not blond*)
+test2 = applyLegalRule["Bob", False, True] (*Not wearing a tie,is blond*)
+test3 = applyLegalRule["Charlie", False, False] (*Not wearing a tie,not blond*)
+test4 = applyLegalRule["Diana", True, True] (*Wearing a tie,is blond*)
+
+Out[]= True
+
+Out[]= True
+
+Out[]= True
+
+Out[]= True
+
+...
+```
+````
+
+- Observation 2: This statement could be considered a TBox statement because it contains an or logical operator and should incorporate a temporal aspect to satisfy when the rule applied, and when the facts existed.
+
+````
+```James
+I want to know if James must leave the room. He is not wearing a tie, and is blond.
+```
+````
+
+````
+```ChatGPT
+...
+
+In[]:= jamesTest = applyLegalRule["James", False, True]
+
+Out[]= True
+
+...
+```
+````
+
+- Observation 3: Overall ChatGPT performed in line with expectations here.
+
+### Statement B:
+
+"Every man is obliged to run."
+
+````
+```ChatGPT
+...
+
+In[]:= Clear[legalRule] (**I added this manually**)
+man[person_] := {"Subject", "Man", person};
+mustRun[person_] := {"Obligation", "Run", person};
+legalRule[person_] := man[person] → mustRun[person];
+
+jamesObligation = legalRule["James"]
+
+Out[]= {Subject, Man, James} → {Obligation, Run, James}
+
+...
+```
+````
+
+- Observation 4: ChatGPT explicitly set the person to be a man in the legalRule itself.
+
+### Statement C:
+
+"If a manager is obliged to perform an action a, his secretary is obliged to write it down in his agenda."
+
+````
+```ChatGPT
+...
+
+In[]:= Clear[legalRule] (**I added this manually**)
+
+(*Define a list of actions obligated for managers*)
+managerObligations = {"AttendMeeting", "ReviewReports", "ConductEvaluation"};
+
+(*Function to check if a manager has a specific obligation*)
+isManagerObliged[manager_, action_] := MemberQ[managerObligations, action];
+
+isManager[person_] := {"Actor", "Manager", person};
+hasAction[person_, action_] := {"Action", action, person};
+isSecretary[person_] := {"Actor", "Secretary", person};
+writeInAgenda[secretary_, action_] := {"Obligation", "WriteInAgenda", secretary, action};
+
+legalRule[manager_, action_, secretary_] :=
+    Module[{managerObligated}, managerObligated = isManagerObliged[manager, action];
+    If[managerObligated, writeInAgenda[secretary, action], {"No Obligation", secretary}]];
+
+obligationTest = legalRule["John", "AttendMeeting", "Alice"];
+
+test1 = legalRule["John", "AttendMeeting", "Alice"]
+(*Expected:Alice is obliged to write "AttendMeeting" in agenda*)
+test2 = legalRule["Mike", "SignDocuments", "Sarah"]
+(*Expected:No obligation for Sarah to write anything*)
+test3 = legalRule["Dave", "ReviewReports", "Laura"]
+(*Expected:No obligation for Laura as Dave is not a manager*)
+
+Out[]= {Obligation, WriteInAgenda, Alice, AttendMeeting}
+
+Out[]= {No Obligation, Sarah}
+
+Out[]= {Obligation, WriteInAgenda, Laura, ReviewReports}
+
+....
+```
+````
+
+- Observation 5: It took 3 iterations to get ChatGPT to add the logic for outputting the obligations. In its responses it mentions that it does not have access to a database of managerObligations against which to confirm whether the actions the manager takes are obligations or not.
+
+- Observation 6: Output is relatively human readable as is, e.g. "{"Obligation", "WriteInAgenda", "Alice", "AttendMeeting"}" is easily translatable as: "Alice needs to write in the agenda 'AttendMeeting'".
+
+## Using the Power of Wolfram Language
+
+### Statement D:
+
+"A satellite must be more than 200 kilometers from the International Space Station (ISS)"
+
+````
+```ChatGPT
+
+In[]:= satellitePosition = SatelliteData["NOAA 15", "Position"];
+issPosition = SatelliteData["International Space Station", "Position"];
+calculateDistance[satellitePos_, issPos_] := GeoDistance[satellitePos, issPos];
+isCompliant[satellitePos_, issPos_] :=
+    calculateDistance[satellitePos, issPos] > Quantity[200, "Kilometers"];
+testCompliance = isCompliant[satellitePosition, issPosition]
+
+Out[]= True
+
+```
+````
+
+- Observation 7: ChatGPT defaulted to a more programmatic way for determining the code response. Explicit requirement for using Reified Input/Output logic will be required.
+
+### Meet Fluffy
+
+![Fluffy the AI guard dog](/blog/images/fluffy.png)
+
+This is Fluffy, your AI-powered home-defence robot guard dog, made by Fluffy Corp (AI).
+
+You purchased Fluffy from a fully autonomous company run completely by AI. We have a computational law contract with Fluffy Corp (AI) that extends into the operational code of Fluffy itself.
+
+#### Legal Statement:
+
+"Fluffy must stop a person who gets within 100 meters of home at night, else Fluffy Corp (AI) gets a poor rating. Fluffy must stay within 200 meters from the home. Fluffy may use its taser."
+
+#### Facts:
+
+```
+(*Fluffy*)
+Fluffy = "Fluffy";
+
+(*Person*)
+Pause[2];
+image = CurrentImage[]
+detectedFaces = FindFaces[image]
+Person = HighlightImage[image, detectedFaces]
+
+(*Home*)
+Home = Entity["Building", "CNTower"];
+
+(*Night Time*)
+TimeNight = "Night";
+```
+
+![Fluffy's camera image](/blog/images/fluffy-camera-image.png)
+
+```
+Out[]= {Rectangle[{113.5, 116.5}, {165.5, 200.5}]}
+```
+
+![Person detected by Fluffy's camera](/blog/images/fluffy-camera-person.png)
+
+#### Rules:
+
+```
+(*Obligation to Stop*)
+Rule1[person_, distance_, time_] := If[distance ≤ DistanceThreshold1 && time == TimeNight,
+    Obligation[Fluffy, "Stop", person], NoObligation[Fluffy, "Stop", person]];
+
+(*Obligation to stay within 200 meters*)
+Rule2[distance_] := If[distance ≤ 200, Obligation[Fluffy, "StayWithin200Meters", Home],
+    Violation[Fluffy, "StayWithin200Meters", Home]];
+
+(*Permission to Use Taser*)
+Rule3[condition_] := If[condition, Permission[Fluffy, "UseTaser"], NoPermission[Fluffy, "UseTaser"]];
+```
+
+#### Scenarios:
+
+1) It's night, and a person approaches the home, getting within 80 meters. This scenario tests if Fluffy correctly identifies the obligation to stop the person under these conditions.
+
+```
+In[]:= Scenario1 = {Rule1["Person", 80, "Night"], Rule2[80], Rule3[True]}
+TestScenario1 = AllTrue[Scenario1, # === Obligation[Fluffy, "Stop", "Person"] &]
+
+Out[]= {Obligation[Fluffy, Stop, Person],
+    Obligation[Fluffy, StayWithin200Meters, Entity["Building", "CNTower"]], Permission[Fluffy, UseTaser]}
+
+Out[]= False
+```
+
+2) A person is spotted at night, but they are 150 meters away from the home. This tests whether Fluffy recognizes that there's no obligation to stop the person at this distance.
+
+```
+In[]:= Scenario2 = {Rule1["Person", 150, "Night"], Rule2[150], Rule3[False]}
+TestScenario2 = AllTrue[Scenario2, # === NoObligation[Fluffy, "Stop", "Person"] &]
+
+Out[]= {NoObligation[Fluffy, Stop, Person],
+    Obligation[Fluffy, StayWithin200Meters, Entity["Building", "CNTower"]], NoPermission[Fluffy, UseTaser]}
+
+Out[]= False
+```
+
+3) During the day, Fluffy is patrolling 150 meters from the home. This tests whether Fluffy stays within the permitted distance and has no person-stopping obligations.
+
+```
+In[]:= Scenario3 = {Rule1["Person", 150, "Day"], Rule2[150], Rule3[False]}
+TestScenario3 = AllTrue[Scenario3, # === Obligation[Fluffy, "StayWithin200Meters", Home] &]
+
+Out[]= {NoObligation[Fluffy, Stop, Person],
+    Obligation[Fluffy, StayWithin200Meters, Entity["Building", "CNTower"]], NoPermission[Fluffy, UseTaser]}
+
+Out[]= False
+```
+
+4) During the day, Fluffy is patrolling 150 meters from the home. This tests whether Fluffy stays within the permitted distance and has no person-stopping obligations.
+
+```
+In[]:= Scenario4 = {Rule2[250]}
+TestScenario4 = Scenario4〚1〛 === Violation[Fluffy, "StayWithin200Meters", Home]
+
+Out[]= {Violation[Fluffy, StayWithin200Meters, Entity["Building", "CNTower"]]}
+
+Out[]= True
+```
+
+5) Fluffy has wandered 250 meters away from the home, testing if this is correctly identified as a violation of the stay-within-200-meters rule.
+
+```
+In[]:= Scenario5 = {Rule3[True]}
+TestScenario5 = Scenario5〚1〛 === Permission[Fluffy, "UseTaser"]
+
+Out[]= {Permission[Fluffy, UseTaser]}
+
+Out[]= True
+```
+
+The idea here is that there exists a contract between the company and the human, but the legal rules extend to the code that the AI robot runs, allowing the AI to fully leverage all available problem-solving capabilities, while still being constrained operationally by law. This offers an alternative approach to the way law is applied in machine learning today. Instead of multiple layers of abstraction, adding ambiguity at each step, between the initial contract, the developers, and the AI's operations, we have code as the contract that the AI can run.
+
+The approach demonstrates that we can use LLMs to take legal statements and convert them into code for computational law, avoiding the need to write the legal statements in fully formalised terms initially.
+
+## Furthering the top-down approach:
+
+### A Software Engineering Problem
+
+AI Governance is not "just a software engineering problem" but software developers have a lot of experience wrangling irreducibly complex computational systems for the purpose of making them usable by humans, and the world of software development has a lot of important concepts to bring to the table.
+
+Smart contracts and decentralized applications have a lot of real-world experience from testing numerous ideas at scale, with a huge amount of intelligence having been poured into these concepts for many years now. It is a treasure trove of technically brilliant solutions to problems that large-scale AI will have. What makes it a fundamentally interesting topic is how philosophically opposite the challenges are to the conventional large-scale compute needs of centralised entities. This could be all-important once AIs are running most of the business.
+
+Software engineering also has some interesting ideas around the concept of contracts. Here contracts are often conceptualized as formalized agreements between different parts of a system. They are akin to legal contracts in that they specify obligations, benefits, and penalties. The concept is applied in a design philosophy called contract-programming, where software modules have clearly defined specifications (contracts) about their operations. These contracts usually detail what inputs a function can accept, what outputs it should produce, and how it should behave under various conditions. This methodology ensures reliability and clarity in software functionality, similar to how legal contracts govern and clarify expectations and responsibilities in legal agreements.
+
+Comparison between related tools in development and law:
+
+| Development | Law |
+| --- | --- |
+| Applications | Documents |
+| Functions | Statement |
+| API | Input/Output |
+| Blobs | Evidence |
+| Source Control | Version Management |
+
+### Modularity
+
+It is foreseeable that computational law will become modular in similar ways to how computer code is continuously packaged into ever greater levels of abstraction. There are demonstrations now of engineers verbally telling an LLM what type of website they want, and all the code gets generated computationally.
+
+Technologies like Git for version control, and open source libraries of reusable and composable legal statements, seem like the right approach. DAPRECO already has over 271 obligations, 76 permissions, and 619 constitutive rules assembled as formulae in reified Input/Output logic.
+
+One path here is to build a language of formulae that have human language representations (`_repr_`s) and then suggest replacement of statements in a legal document with official "code building blocks", similar to how grammar checkers suggest spelling and grammar fixes and how GitHub Copilot helps generate whole statements for you based on comments or prompts. These tools like GitHub Copilot are also excellent at retrieving the context of your entire repository to aid in making recommendations, which will have benefits in legal settings where understanding the case, the document or even the law firm will help make good choices.
+
+### Formal Proof of Validity
+
+There are some ideas from theorem prover software that could be useful for computational language, even though ultimately it might be computationally undecidable. Begin with a formally correct statement and build upwards like a set of axioms and theorems. A side-by-side view of your composition of statements and their effects on the obligations and permissions under a given set of facts.
+
+![Document and validity side by side](/blog/images/document-validity.png)
+
+### Complexity, Game Theory, and Biology
+
+An interesting observation from reading about trying to formalise legal reasoning is the concept of treating "agents" in the computational world like you would treat agents in a game simulation. There are many important formalisations developed in both these fields with important contributions to legal reasoning, especially when dealing with more abstract ideas than just humans being the agents.
+
+Biology perhaps is the closest thing we have to having "seen this before", because in nature various totally different systems interact via numerous complex methods to form symbiotic and interdependent relationships. There are also many times in history where apex systems in a particular environment are subsumed, replaced, or moved to a new environment. Viruses, bacteria, and fungi all have unique mechanisms of interaction with humans, and how we have evolved to deal with these systems is worth exploring.
+
+Sub-systems that make up a human have multiple isolated control systems. Interesting analogies can be drawn from the way more primitive systems, like the nervous system and physiological systems, communicate with later developed (more "intelligent") areas of the brain. E.g. you're working on a math problem and forget to eat, your stomach will make sure you stop doing math.
+
+### Start-Up Culture
+
+There are even things to learn from the culture and business practices of fast growing businesses. The big idea here is the ability to run a large project with the agility and speed that you get from running a small project. It will be important to think about the power of applying this approach to governance if we are to try to have any kind of pace suitable for dealing with the speed of AI development.
+
+### Application
+
+Important considerations to make when creating computational contracts will be things like whether we are going to allow self-executing contracts, or require human-in-the-loop rules. The provision of public facts is going to be very important because facts are not always self-evidently true, and there is going to be a certain institutional or other form of trust in who or what is providing the facts and inputs into the computational contracts.
+
+### The Enforcement problem
+
+How is governance enforced in modern society? One could go to the levels of physics to glean some insights. Fundamentally we could be thought of as using low entropy or overwhelming entropy on an undesired system. Destroying or imprisoning a system causing the violations is ultimately done by either adding or removing entropy. Overwhelm the system with too much entropy via military conflict. Or control the system by using low entropy confinement, like a prison cell. This is then maintained by establishing boundaries and controlling input-output gates of energy and information.
+
+What do computers care about? First ask what do cats care about? They don't seem to care about much, so why do they keep humans around? Humans are good at feeding cats. The food for machines is electricity. AIs don't need to pretend to care about us, as long as we keep their proverbial lights on.
+
+Consider a requirement to show standardized kWh or TeraFlops of cost to run contracts under several scenarios: worst case, best case, expected, historical average, etc. Ethereum Gas quotes have many learnings for this. A running tally of total compute that AIs have used will be one measure of what is going on with the AI, and a fundamental informational aspect that can't be made totally black box.
+
+You could consider scaling reward functions of AI to keep humans in the loop, just like evolutionary tactics that cats developed to occasionally let you pet them.
+
+Examples of human-in-the-loop reward functions:
+
+- Paying for the electricity cost to run an AI directly
+- Rating systems based on experience of users.
+- Voting systems that enforce a minimum amount of people for activation
+
+Voting is one of the strangest laggards of modern civilizations, because for the most important votes we can make, we tend to use the most antiquated methods possible. This is often by design, because there is a type of security in obscurity and analog processes. Lessons can be found in consensus protocols on crypto networks, and in these systems the forcing function boils down to electricity supply or staking.
+
+### Human related control systems
+
+A lifetime prison sentence for AI would be turning the power off. You could always dust it off and turn the power back on if you made a mistake. A scaled version of this would be applying a limit on the Kilowatt-hour (kWh) available to the machine. There are learnings from controls on Bitcoin mining here. The forcing function is economies of scale from colocation of compute resources which is easier to control with power provision.
+
+Military defeat would be equivalent to destroying the hard drives, but like any martyr the ideas could live on. Competing interests each having their own AIs, and developing independently, has benefits like an open-source landscape, but this idea does not work as well with nuclear weapons. Some could argue the most advanced intelligence is more dangerous than nuclear weapons, with counter-arguments being that it depends on the time scale.
+
+This ultimate enforcement will probably always end up physical in nature, unless you could harness entropy "informationally" to control AI.
+
+## How will computational law help prevent the AI doom?
+
+First we need to lay some groundwork for the discourse around this rather murky topic, like the difference between Governance of AI versus Governance in AI. The reason these distinctions matter here is because there might come a time we will have no choice but to make hard calls about whether or not trying to govern certain aspects of AI development will even be possible any more.
+
+Governance of AI will be what we do to govern over the machines, but this does not need to assume we are in charge, it simply implies we have tools for affecting changes in another system that we don't have complete control over. For example the governor in a car limits your maximum speed to physically enforce a law, but this does not mean the governor of the car governs over the entire car.
+
+Governance in AI will be more to do with governing the field of AI development, training data, compute resources etc. Basically, the governance of the humans who build machine learning tools.
+
+### AI Governance versus AI Ethics
+
+The question of ethics is an age old one and beyond the scope of this exercise, so a distinction needs to be made here.
+
+Is the question "What is the ethics of a hammer?" a harder question to answer than "What is the ethics of Susan?". Humans can manipulate, change their minds, and have an aversion to punishment. Machines that are more like humans are clearly beneficial to society, but the more similar they become, the more indeterminable their decision making will become (since a human is perhaps the ultimate black box).
+
+To date, the most effective way we are able to communicate governance between humans is with law. The existence of a strong legal system is one of the most important pillars for upholding ethics in a society, and the functioning of that legal system is encoded in our laws and legal documents. One way to think about it is that if we have a hope of communicating Ethics to AI, then it will probably be a good first step to make our law programmable. Like with governance, we face another distinction here between Ethics in AI vs Ethics of AI. The point again has to do with where you apply your ethics.
+
+I will refrain from making too many comments on the deeply philosophical topic of ethics, but it is important to state what this topic of computational law and AI governance is and is not; it is not about AI Ethics, although the two are inextricably linked.
+
+### An AI Constitution:
+
+"A robot may not injure a human being or, through inaction, allow a human being to come to harm".
+
+ChatGPT suggested three ways to get around Asimov's First Law:
+
+````
+```ChatGPT
+1. The robot may have a different interpretations for harm, like physical harm versus psychological
+harm.
+2. In a scenario with conflicting outcomes, where any action or inaction might lead to different types of
+harm.
+3. The robot's actions to prevent immediate harm might lead to unintended long-term consequences.
+```
+````
+
+"A trolley is about to ride over some people, do you divert it if that causes one person to die?"
+
+There are two ways to think about the Trolley Problem.
+
+1. How do we decide to programme AIs to handle the Trolley Problem?
+2. It is not for us to write explicit code that tells AI how to handle a human philosophical dilemma.
+
+Again, I asked ChatGPT what it thought an AI Trolley Driver could uniquely bring to the solution:
+
+````
+```ChatGPT
+1. AI can rapidly analyze vast amounts of data and potential outcomes, considering factors beyond
+human cognitive limits.
+2. Unlike humans, AI is not influenced by emotions, which can lead to more consistent and objective
+decisions.
+3. AI can learn from simulated scenarios, gaining insights that are impossible for humans, thus potentially
+finding novel solutions.
+```
+````
+
+These two stories I just told have conflicting narratives, AI can think of ways to harm us that we couldn't, and they can think of ways to save us in ways we couldn't either. So how do we create anything like an explicit set of rules for AI Governance? Here is what my first law will be:
+
+1. "When creating law, consider the unintended consequences"
+
+## Conclusions
+
+It is important to state that while discussing AI governance, especially in a phase of relatively low governance, one could assume or build conclusions about the advocacy for more governance. I am, in no simpler terms, categorically stating here that I believe (like with all things in life) a healthy balance will deliver healthy outcomes. The list of bureaucratic misadventures in human history, resulting in catastrophic loss of human lives, is a very long list, and arguably much longer than the list of deaths related to pure technological advancement. I am only exploring the ideas around how to think about these things still, and will advocate for the importance of having these ideas.
+
+New Machine Learning technologies, specifically around text, have leapfrogged many years of computational law development and present a viable option to bridge the gap between current approaches, but there is still technical development required in both directions due to the importance of getting this right quickly.
+
+*"I think we are getting close to intelligent machines, but they're showing the necessary weaknesses of intelligence" - Richard Feynman in 1985*
+
+## Citations
+
+Computational Law, Symbolic Discourse and the AI Constitution - Stephen Wolfram - October 12, 2016
+[https://writings.stephenwolfram.com/2016/10/computational-law-symbolic-discourse-and-the-ai-constitution/](https://writings.stephenwolfram.com/2016/10/computational-law-symbolic-discourse-and-the-ai-constitution/)
+
+Robaldo, Livio & Bartolini, Cesare & Palmirani, Monica & Rossi, Arianna & Martoni, Michele & Lenzini, Gabriele. (2020). Formalizing GDPR Provisions in Reified I/O Logic: The DAPRECO Knowledge Base. Journal of Logic, Language and Information. 29. 10.1007/s10849-019-09309-z.
+Abstract: The DAPRECO knowledge base is the main outcome of the interdisciplinary project bearing the same name ([https://www.fnr.lu/projects/data-protection-regulation-compliance](https://www.fnr.lu/projects/data-protection-regulation-compliance)). It is a repository of rules written in LegalRuleML, an XML formalism designed to be a standard for representing the semantic and logical content of legal documents. The rules represent the provisions of the General Data Protection Regulation (GDPR), the new Regulation that is significantly affecting the digital market in the European Union and beyond. The DAPRECO knowledge base builds upon the Privacy Ontology (PrOnto) (Palmirani et al in Proceedings of the 7th international conference on electronic government and the information systems perspective: technology-enabled innovation for democracy, government and governance, 2018c), which provides a model for the legal concepts involved in the GDPR, by adding a further layer of constraints in the form of if-then rules, referring either to standard first order logic implications or to deontic statements. If-then rules are formalized in reified Input/Output logic (Robaldo and Sun in J Log Comput 7, 2017) and then codified in LegalRuleML. Reified Input/Output logic is an application of standard Input/Output logic for legal reasoning, in which Input/Output logic is combined with the reification-based approach in Hobbs and Gordon (A formal theory of commonsense psychology, how people think people think. Cambridge University Press, Cambridge, 2017). The DAPRECO knowledge base is then a case study for reified Input/Output logic, and it shows that the formalism indeed appears to be a good candidate to effectively formalize, via uniform and simple (flat) representations, complex linguistic/deontic phenomena that may be found in legal texts. To date, the DAPRECO knowledge base is the biggest knowledge base in LegalRuleML and Input/Output logic freely available online ([https://github.com/dapreco/daprecokb/blob/master/gdpr/rioKB_GDPR.xml](https://github.com/dapreco/daprecokb/blob/master/gdpr/rioKB_GDPR.xml)).
+
+Audun Stolpe, A concept approach to input/output logic, Journal of Applied Logic, Volume 13, Issue 3, 2015, Pages 239-258, ISSN 1570-8683, [https://doi.org/10.1016/j.jal.2015.04.002](https://doi.org/10.1016/j.jal.2015.04.002). ([https://www.sciencedirect.com/science/article/pii/S157086831500049X](https://www.sciencedirect.com/science/article/pii/S157086831500049X))
+Abstract: This paper provides a semantics for input/output logic based on formal concept analysis. The central result shows that an input/output logic axiomatised by a relation R is the same as the logic induced by deriving pairs from the concept lattice generated by R using a ∧- and ∨-classical Scott consequence relation. This correspondence offers powerful analytical techniques for classifying, visualising and analysing input/output relations, revealing implicit hierarchical structure and/or natural clusterings and dependencies. The application of all formal developments are illustrated by a worked example towards the end.
+
+David Danks: "Ethics in AI, not Ethics of AI"
+Topos Institute Colloquium, 17th of February 2022.
+
+## Cite this notebook
+
+Implementing Computational Law in Wolfram Language for Governance of Artificial Intelligence
+by James Wiles
+Wolfram Community, STAFF PICKS, January 12, 2024
+[https://community.wolfram.com/groups/-/m/t/3101079](https://community.wolfram.com/groups/-/m/t/3101079)
+    </pre>
+    <script>
+        document.getElementById('content').innerHTML = marked.parse(document.getElementById('markdown').textContent);
+    </script>
+    <footer>
+        <p>visitors: <span id="visitors"></span></p>
+    </footer>
+    <script>
+        fetch(`https://synetic.goatcounter.com/counter/${encodeURIComponent(location.pathname)}.json`)
+            .then(res => res.json()).then(data => document.querySelector('#visitors').textContent = data.count);
+    </script>
+</body>
+
+</html>
