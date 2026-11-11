@@ -1,11 +1,13 @@
 // Builds the site into _site/.
 //   blog/*.md   → blog/*.html, poured into _build/post.html
 //   index.html  → {{posts}} and {{updated}} filled in
+//   blog images → a smaller WebP copy of each PNG and JPEG, which the posts load
 //   the rest    → copied as is, except names starting with "_" or "."
 import { execFileSync } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
 import { Marked } from 'marked'
+import sharp from 'sharp'
 
 const ROOT = path.resolve(import.meta.dirname, '..')
 const OUT = path.join(ROOT, '_site')
@@ -13,6 +15,7 @@ const SITE = 'https://' + fs.readFileSync(path.join(ROOT, 'CNAME'), 'utf8').trim
 const AUTHOR = 'James K. Wiles'
 const DEFAULT_IMAGE = '/blog/images/acorn.png'
 const MEASURE = 720 // width of the measure table in the templates
+const MAX_WIDTH = 2 * MEASURE // an image is never shown wider than the measure; twice that stays sharp on dense screens
 const PHONE = 300 // an image inside a line of text keeps its natural size only if it fits the narrowest phone
 const UNPUBLISHED = ['node_modules', 'package.json', 'package-lock.json', 'README.md']
 
@@ -39,43 +42,70 @@ function gitDate(file, which) {
   }
 }
 
-// Pixel width from the header of a PNG, GIF or JPEG. Null for anything else.
-function imageWidth(file) {
-  let bytes
-  try {
-    bytes = fs.readFileSync(file)
-  } catch {
-    return null
-  }
-  if (bytes.toString('latin1', 1, 4) === 'PNG') return bytes.readUInt32BE(16)
-  if (bytes.toString('latin1', 0, 3) === 'GIF') return bytes.readUInt16LE(6)
-  if (bytes[0] === 0xff && bytes[1] === 0xd8) {
-    // JPEG: step through the segments to the start-of-frame, which holds the size
-    for (let i = 2; i + 9 < bytes.length && bytes[i] === 0xff; i += 2 + bytes.readUInt16BE(i + 2)) {
-      const marker = bytes[i + 1]
-      if (marker >= 0xc0 && marker <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marker)) return bytes.readUInt16BE(i + 7)
-    }
-  }
-  return null
+// Every image under blog/, by its address on the site: its size, and the file a post should
+// load. A PNG or JPEG is resized to at most MAX_WIDTH and written as WebP twice, lossless and at
+// quality 90, and the smaller one is kept: flat charts stay exact, photos shrink to a fraction.
+// The original is still published at its own address, for share previews and old links.
+async function prepareImages() {
+  const images = new Map()
+  const files = fs
+    .readdirSync(path.join(ROOT, 'blog'), { recursive: true })
+    .map(file => file.split(path.sep).join('/'))
+    .filter(file => /\.(png|jpe?g|gif|webp|avif|svg)$/i.test(file) && !/(^|\/)[._]/.test(file))
+  let before = 0
+  let after = 0
+  await Promise.all(
+    files.map(async file => {
+      const address = '/blog/' + file
+      const source = path.join(ROOT, 'blog', file)
+      const { width, height } = await sharp(source).metadata()
+      const image = { src: address, width, height, shown: width }
+      images.set(address, image)
+      if (!/\.(png|jpe?g)$/i.test(file)) return
+      const webp = address.replace(/\.\w+$/, '.webp')
+      if (files.some(other => '/blog/' + other !== address && ('/blog/' + other).replace(/\.(png|jpe?g)$/i, '.webp') === webp)) {
+        throw new Error(`blog/${file}: another image would also become ${webp}. Rename one of them.`)
+      }
+      const resized = () => sharp(source).resize({ width: MAX_WIDTH, withoutEnlargement: true })
+      const [lossless, lossy] = await Promise.all([
+        resized().webp({ lossless: true, effort: 6 }).toBuffer(),
+        resized().webp({ quality: 90, effort: 6 }).toBuffer(),
+      ])
+      const smaller = lossless.length <= lossy.length ? lossless : lossy
+      fs.writeFileSync(path.join(OUT, webp), smaller)
+      image.src = webp
+      image.shown = Math.min(width, MAX_WIDTH)
+      before += fs.statSync(source).size
+      after += smaller.length
+    }),
+  )
+  console.log(`${images.size} images, ${(before / 1e6).toFixed(1)} MB → ${(after / 1e6).toFixed(1)} MB as WebP`)
+  return images
 }
 
 // With no CSS there is no max-width, so an image wider than the screen would push the page
-// sideways. A local image narrower than the measure, on a line of its own, sits in its own
-// measure table: natural size on a wide screen, shrinking on a narrow one. Everything else gets
-// width="100%".
+// sideways. An image narrower than the measure, on a line of its own, sits in its own measure
+// table: natural size on a wide screen, shrinking on a narrow one. Everything else, including
+// any image whose size is unknown (one on another site), gets width="100%".
 function image(post, token, alone) {
+  let src = token.href
   let width = null
-  if (!/^([a-z][a-z0-9+.-]*:|\/\/)/i.test(token.href)) {
-    let relative = token.href.replace(/[?#].*/, '')
+  if (!/^([a-z][a-z0-9+.-]*:|\/\/)/i.test(src)) {
+    let address = src.replace(/[?#].*/, '')
     try {
-      relative = decodeURIComponent(relative)
+      address = decodeURIComponent(address)
     } catch {} // a stray % in the path: use it as written
-    const file = relative.startsWith('/') ? path.join(ROOT, relative) : path.join(ROOT, 'blog', relative)
-    if (!fs.existsSync(file)) warnings.add(`${post}: image not found: ${token.href}`)
-    width = imageWidth(file)
+    address = path.posix.resolve('/blog', address)
+    const known = images.get(address)
+    if (known) {
+      src = known.src
+      width = known.shown
+    } else if (!fs.existsSync(path.join(ROOT, address))) {
+      warnings.add(`${post}: image not found: ${token.href}`)
+    }
   }
   const title = token.title ? ` title="${escapeHtml(token.title)}"` : ''
-  const tag = `<img src="${escapeHtml(token.href)}" alt="${escapeHtml(token.text)}"${title}`
+  const tag = `<img src="${escapeHtml(src)}" alt="${escapeHtml(token.text)}"${title}`
   const small = width !== null && width < MEASURE
   if (!alone) return small && width <= PHONE ? `${tag}>` : `${tag} width="100%">`
   if (!small) return `<p>${tag} width="100%"></p>\n`
@@ -153,6 +183,14 @@ function readPost(filename) {
   if (byline) content = content.replace(byline[1], stamp)
   else content = content.replace('</h1>', `</h1>\n<p><em>${AUTHOR} | ${stamp}</em></p>`)
 
+  // Share image: front matter, else the default. Previews load the original, not the WebP.
+  let shareAddress = meta.image || DEFAULT_IMAGE
+  if (!images.has(shareAddress)) {
+    warnings.add(`${file}: share image not found: ${shareAddress}`)
+    shareAddress = DEFAULT_IMAGE
+  }
+  const share = images.get(shareAddress)
+
   return {
     file,
     slug,
@@ -160,7 +198,9 @@ function readPost(filename) {
     date,
     description,
     content,
-    image: SITE + (meta.image || DEFAULT_IMAGE),
+    image: SITE + shareAddress,
+    imageWidth: share.width,
+    imageHeight: share.height,
     path: `/blog/${encodeURI(slug)}.html`,
     source: `/blog/${encodeURI(name)}.md`,
   }
@@ -176,6 +216,8 @@ for (const entry of fs.readdirSync(ROOT)) {
     filter: source => !/^[._]/.test(path.basename(source)),
   })
 }
+
+const images = await prepareImages()
 
 const posts = fs
   .readdirSync(path.join(ROOT, 'blog'))
@@ -194,6 +236,8 @@ for (const post of posts) {
     url: SITE + post.path,
     source: post.source,
     image: post.image,
+    imageWidth: post.imageWidth,
+    imageHeight: post.imageHeight,
     date: post.date,
     content: post.content,
   })
@@ -201,10 +245,8 @@ for (const post of posts) {
   console.log(`${post.date}  ${(Buffer.byteLength(html) / 1000).toFixed(1).padStart(5)} kB  blog/${post.slug}.html`)
 }
 
-const rows = posts.map(
-  post => `<tr><td valign="baseline" nowrap><time datetime="${post.date}">${post.date}</time></td><td valign="baseline"><a href="${post.path}">${escapeHtml(post.title)}</a></td></tr>`,
-)
-const home = fill(fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8'), { posts: rows.join('\n'), updated: today })
+const rows = posts.map(post => `<time datetime="${post.date}">${post.date}</time> <a href="${post.path}">${escapeHtml(post.title)}</a>`)
+const home = fill(fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8'), { posts: rows.join('<br>\n'), updated: today })
 fs.writeFileSync(path.join(OUT, 'index.html'), home)
 
 const urls = [

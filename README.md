@@ -19,10 +19,17 @@ Nothing else is required. The build works these out:
 
 Front matter is optional: `key: value` lines between two `---` lines at the top of the file.
 
+- [blog/_template.md](blog/_template.md) is a post to copy, with the front matter filled in.
 - Spaces in a file name become hyphens in the URL.
 - A file whose name starts with `_` is a draft and is not published.
-- Images go in [blog/images/](blog/images/) and are written as `![alt](/blog/images/name.png)`.
 - The Markdown file is published too, next to the page.
+
+## Images
+
+Put the image in [blog/images/](blog/images/) as it is, and write `![alt](/blog/images/name.png)`.
+The build makes a smaller WebP copy of every PNG and JPEG, at most 1440 pixels wide, and the
+post loads that. It keeps whichever is smaller of lossless and quality 90, so charts stay exact
+and photos shrink to a fraction. The original stays published for link previews.
 
 ## How it works
 
@@ -33,7 +40,7 @@ Every push to `main` runs [.github/workflows/site.yml](.github/workflows/site.ym
 index.html           home page; the build fills in the post list and the date
 blog/*.md            posts
 _build/post.html     the page every post is poured into
-_build/build.mjs     the build: Markdown → HTML, sitemap.xml, copies everything else
+_build/build.mjs     the build: Markdown → HTML, WebP images, sitemap.xml, copies everything else
 ```
 
 Names that start with `_` or `.` are never published.
