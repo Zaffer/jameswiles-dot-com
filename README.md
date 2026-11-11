@@ -1,6 +1,6 @@
 # jameswiles.com
 
-Built in [plain-site](https://github.com/Zaffer/plain-site): HTML only, no CSS.
+Built in [plain-site](https://github.com/Zaffer/plain-site): with no CSS.
 
 ## Add a blog post
 
