@@ -1,37 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="James Wiles personal website - blog, experiments, research, and links">
-    <meta name="author" content="James K. Wiles">
-
-    <meta property="og:site_name" content="James Wiles Blog">
-    <meta property="og:type" content="article" />
-
-    <meta property="og:title" content="Implementing Computational Law in Wolfram Language for Governance of Artificial Intelligence">
-    <meta property="og:description" content="Executable law: Reified Input/Output Logic in Wolfram Language, ChatGPT experiments, and AI governance">
-    <meta property="og:url" content="https://jameswiles.com/blog/Implementing-Computational-Law-in-Wolfram-Language-for-Governance-of-Artificial-Intelligence.html">
-    <meta property="og:image" content="https://jameswiles.com/blog/images/governor-cute-ai.png">
-
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:creator" content="@_jameswiles">
-
-    <title>⚖️ Implementing Computational Law in Wolfram Language for Governance of Artificial Intelligence | James Wiles Blog</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/marked@16/lib/marked.umd.min.js"></script>
-    <script data-goatcounter="https://synetic.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-</head>
-
-<body>
-    <header>
-        <nav>
-            <a href="/">James Wiles Blog</a>
-        </nav>
-    </header>
-    <main id="content"></main>
-    <pre id="markdown" style="display: none">
+---
+description: "Executable law: Reified Input/Output Logic in Wolfram Language, ChatGPT experiments, and AI governance"
+image: /blog/images/governor-cute-ai.png
+---
 # ⚖️ Implementing Computational Law for Governance of Artificial Intelligence
 *James K. Wiles | 2024-01-12*
 
@@ -1073,17 +1043,3 @@ If you reference this work, please cite:
   url    = {https://jameswiles.com/blog/Implementing-Computational-Law-in-Wolfram-Language-for-Governance-of-Artificial-Intelligence.html}
 }
 ```
-    </pre>
-    <script>
-        document.getElementById('content').innerHTML = marked.parse(document.getElementById('markdown').textContent);
-    </script>
-    <footer>
-        <p>visitors: <span id="visitors"></span></p>
-    </footer>
-    <script>
-        fetch(`https://synetic.goatcounter.com/counter/${encodeURIComponent(location.pathname)}.json`)
-            .then(res => res.json()).then(data => document.querySelector('#visitors').textContent = data.count);
-    </script>
-</body>
-
-</html>

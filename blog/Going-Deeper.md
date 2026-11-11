@@ -1,39 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="James Wiles personal website - blog, experiments, research, and links">
-    <meta name="author" content="James K. Wiles">
-
-    <meta property="og:site_name" content="James Wiles Blog">
-    <meta property="og:type" content="article" />
-
-    <meta property="og:title" content="🗻 Going Deeper">
-    <meta property="og:description" content="re-examining your axiomatic beliefs and the benefit of developing more fundamental principles">
-    <meta property="og:url" content="https://jameswiles.com/blog/Going-Deeper.html">
-    <meta property="og:image" content="https://jameswiles.com/blog/images/acorn.png">
-
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:creator" content="@_jameswiles">
-    
-    <title>James Wiles Blog</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/marked@16/lib/marked.umd.min.js"></script>
-    <script data-goatcounter="https://synetic.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-</head>
-
-<body>
-    <header>
-        <nav>
-            <a href="/">James Wiles Blog</a>
-        </nav>
-    </header>
-    <main id="content"></main>
-    <pre id="markdown" style="display: none">
+---
+description: re-examining your axiomatic beliefs and the benefit of developing more fundamental principles
+---
 # 🗻 Going Deeper
-*James K. Wiles | 2024-02-03 *
+*James K. Wiles | 2024-02-03*
 
 Re-examining your axiomatic beliefs and the benefit of developing more fundamental principles.
 
@@ -165,19 +134,3 @@ I know have a much richer framework with which to evaluate decisions if necessar
 Parting thought:
 
 A story based ideas can be re-examined and refined. We are not dealing with the laws of physics here, better compression algorithms and optimized narrative impact is always incrementally possible. Adjusting to societal movement by evolving these ideas to fit the environment is also an always-on requirement.
-
-
-    </pre>
-    <script>
-        document.getElementById('content').innerHTML = marked.parse(document.getElementById('markdown').textContent);
-    </script>
-    <footer>
-        <p>visitors: <span id="visitors"></span></p>
-    </footer>
-    <script>
-        fetch(`https://synetic.goatcounter.com/counter/${encodeURIComponent(location.pathname)}.json`)
-            .then(res => res.json()).then(data => document.querySelector('#visitors').textContent = data.count);
-    </script>
-</body>
-
-</html>

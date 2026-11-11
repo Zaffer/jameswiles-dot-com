@@ -1,0 +1,12 @@
+{
+  "name": "jameswiles-dot-com",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node _build/build.mjs",
+    "preview": "node _build/build.mjs && python3 -m http.server --directory _site 8000"
+  },
+  "dependencies": {
+    "marked": "18.2.0"
+  }
+}

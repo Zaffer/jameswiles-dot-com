@@ -1,37 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="James Wiles personal website - blog, experiments, research, and links">
-    <meta name="author" content="James K. Wiles">
-
-    <meta property="og:site_name" content="James Wiles Blog">
-    <meta property="og:type" content="article" />
-
-    <meta property="og:title" content="🔗 We are not the nodes, we are the relationships">
-    <meta property="og:description" content="the relationships between things define the things themselves">
-    <meta property="og:url" content="https://jameswiles.com/blog/We-are-not-the-nodes-we-are-the-relationships.html">
-    <meta property="og:image" content="https://jameswiles.com/blog/images/acorn.png">
-
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:creator" content="@_jameswiles">
-
-    <title>James Wiles Blog</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/marked@16/lib/marked.umd.min.js"></script>
-    <script data-goatcounter="https://synetic.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-</head>
-
-<body>
-    <header>
-        <nav>
-            <a href="/">James Wiles Blog</a>
-        </nav>
-    </header>
-    <main id="content"></main>
-    <pre id="markdown" style="display: none">
+---
+description: the relationships between things define the things themselves
+---
 # 🔗 We are not the nodes, we are the relationships
 *James K. Wiles | 2021-08-04*
 
@@ -53,18 +22,3 @@ Inverting the concept of what a system lets you consider things with a new angle
 The concept of inversion is to shift the attention front to back in the hope that this illuminates something to help solve a problem you where thinking about, but ultimately this is just a method to see the challenge from different angles so as to overcome it. What is revealed if you apply this technique to the representation of our society as a system?
 
 You are, perhaps, not an individual person with a network of friends, family, and colleagues but are rather the individual pattern of relationships that happens to be identifiable as a unique person.
-
-    </pre>
-    <script>
-        document.getElementById('content').innerHTML = marked.parse(document.getElementById('markdown').textContent);
-    </script>
-    <footer>
-        <p>visitors: <span id="visitors"></span></p>
-    </footer>
-    <script>
-        fetch(`https://synetic.goatcounter.com/counter/${encodeURIComponent(location.pathname)}.json`)
-            .then(res => res.json()).then(data => document.querySelector('#visitors').textContent = data.count);
-    </script>
-</body>
-
-</html>

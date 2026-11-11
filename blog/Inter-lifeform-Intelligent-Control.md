@@ -1,37 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="James Wiles personal website - blog, experiments, research, and links">
-    <meta name="author" content="James K. Wiles">
-
-    <meta property="og:site_name" content="James Wiles Blog">
-    <meta property="og:type" content="article" />
-
-    <meta property="og:title" content="🐺 Inter-lifeform Intelligent Control">
-    <meta property="og:description" content="comparing adjacent lifeforms to analyze the role intelligence plays in collaborative survival">
-    <meta property="og:url" content="https://jameswiles.com/blog/Inter-lifeform-Intelligent-Control.html">
-    <meta property="og:image" content="https://jameswiles.com/blog/images/acorn.png">
-
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:creator" content="@_jameswiles">
-    
-    <title>James Wiles Blog</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/marked@16/lib/marked.umd.min.js"></script>
-    <script data-goatcounter="https://synetic.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-</head>
-
-<body>
-    <header>
-        <nav>
-            <a href="/">James Wiles Blog</a>
-        </nav>
-    </header>
-    <main id="content"></main>
-    <pre id="markdown" style="display: none">
+---
+description: comparing adjacent lifeforms to analyze the role intelligence plays in collaborative survival
+---
 # 🐺 Inter-lifeform Intelligent Control
 *James K. Wiles | 2024-05-24*
 
@@ -58,17 +27,3 @@ In the case where the IQ difference is more like us being the reptiles compared 
 The big difference between the two cases, is that we had a significant say in the genetic evolution of dogs, and we crafted the various dog breeds to be the way they are through careful selection and breeding. In this way we have somewhat ensured our future mutual inter-species compatibility and survival, and perhaps this is the key lesson and tool we can use to ensure our own survival in a future where we are the ones at the mercy of a superior intelligence. The lesson being the importance of co-evolution and adaptation to ensure mutual collaborative incentives regardless of the intelligence gap.
 
 If the AI's we allow to propagate have our best interests at heart, and the systems we employ to ensure control rests with us for as long as possible, then the maintenance of this evolutionary pressure can align our collaboration for mutual benefit. Being intelligent about the selective controls we place on AI (while the intelligence gap is still close) and by taking lessons from our experience with our other successful inter-lifeform partnerships, together will give us a shot at living a comfortable, happy existence into the future controlled by AI's.
-    </pre>
-    <script>
-        document.getElementById('content').innerHTML = marked.parse(document.getElementById('markdown').textContent);
-    </script>
-    <footer>
-        <p>visitors: <span id="visitors"></span></p>
-    </footer>
-    <script>
-        fetch(`https://synetic.goatcounter.com/counter/${encodeURIComponent(location.pathname)}.json`)
-            .then(res => res.json()).then(data => document.querySelector('#visitors').textContent = data.count);
-    </script>
-</body>
-
-</html>

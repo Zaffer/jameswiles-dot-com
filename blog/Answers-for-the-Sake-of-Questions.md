@@ -1,39 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="James Wiles personal website - blog, experiments, research, and links">
-    <meta name="author" content="James K. Wiles">
-
-    <meta property="og:site_name" content="James Wiles Blog">
-    <meta property="og:type" content="article" />
-    
-    <meta property="og:title" content="⁉️ Answers for the Sake of Questions">
-    <meta property="og:description" content="asking questions and providing answers is a deep fundamental issue, and ties into making predictions about the future">
-    <meta property="og:url" content="https://jameswiles.com/blog/Answers-for-the-Sake-of-Questions.html">
-    <meta property="og:image" content="https://jameswiles.com/blog/images/acorn.png">
-
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:creator" content="@_jameswiles">
-
-    <title>James Wiles Blog</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/marked@16/lib/marked.umd.min.js"></script>
-    <script data-goatcounter="https://synetic.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-</head>
-
-<body>
-    <header>
-        <nav>
-            <a href="/">James Wiles Blog</a>
-        </nav>
-    </header>
-    <main id="content"></main>
-    <pre id="markdown" style="display: none">
+---
+description: asking questions and providing answers is a deep fundamental issue, and ties into making predictions about the future
+---
 # ⁉️ Answers for the Sake of Questions
-*James K. Wiles | 2025-07-26**
+*James K. Wiles | 2025-07-26*
 
 Asking questions and providing answers is a deep fundamental issue. This ties into making predictions about the future, which is the most important thing we do.
 Those that provide good answers have more value. Those that ask good questions are valuable to the degree that the value of the potential answers to that question might have. If no one asked those questions before, the inference on new valuable answers passes through that chain originated by the questioner.
@@ -57,17 +26,3 @@ Society over millennia is just built up out of stacks and stacks of questions an
 This conception can paint all of life, look at anyone going about the decisions they make on a daily basis. They are asking questions; "What to eat for dinner?", "How to get that promotion?", "Will that person go on a date with me?", and this guides in small and large ways all the actions that take place. Giving someone an answer to a problem they did not have a question for often causes issues, and likewise giving someone a question they want an answer to that they were not ready to start asking, comes with probably more issues.
 
 When society settles into a routine and the questions become mundane, as the answers are all within reach, the whole network becomes fragile to external forces forcing problems on to you that you were not prepared to grapple with. Grappling with hard questions and, importantly, coming up with good answers moves society and life forward. Without big questions we have nothing important to struggle with, and to some people that is fine, but to risk takers and adventurers this is an unacceptable fate. This is why some people are "born to take risks", and is my theory for why the penguins in Antarctica sometimes decide to wander off from the waddle to certain death. There is a certain level of craziness that a system should endure to allow for exploration of low probability of success outcomes which could change everyone's fate. Maybe a lone penguin that one day decided to head South for no logical reasons whatsoever is the one that discovered Antarctica in the first place. He had a question that needed an answer, not matter the personal cost.
-    </pre>
-    <script>
-        document.getElementById('content').innerHTML = marked.parse(document.getElementById('markdown').textContent);
-    </script>
-    <footer>
-        <p>visitors: <span id="visitors"></span></p>
-    </footer>
-    <script>
-        fetch(`https://synetic.goatcounter.com/counter/${encodeURIComponent(location.pathname)}.json`)
-            .then(res => res.json()).then(data => document.querySelector('#visitors').textContent = data.count);
-    </script>
-</body>
-
-</html>

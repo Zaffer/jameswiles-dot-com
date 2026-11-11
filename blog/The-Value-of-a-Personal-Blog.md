@@ -1,37 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="James Wiles personal website - blog, experiments, research, and links">
-    <meta name="author" content="James K. Wiles">
-
-    <meta property="og:site_name" content="James Wiles Blog">
-    <meta property="og:type" content="article" />
-    
-    <meta property="og:title" content="🗨️ The Value of a Personal Blog">
-    <meta property="og:description" content="the non-linear value generation of the content creation">
-    <meta property="og:url" content="https://jameswiles.com/blog/The-Value-of-a-Personal-Blog.html">
-    <meta property="og:image" content="https://jameswiles.com/blog/images/acorn.png">
-
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:creator" content="@_jameswiles">
-
-    <title>James Wiles Blog</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/marked@16/lib/marked.umd.min.js"></script>
-    <script data-goatcounter="https://synetic.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-</head>
-
-<body>
-    <header>
-        <nav>
-            <a href="/">James Wiles Blog</a>
-        </nav>
-    </header>
-    <main id="content"></main>
-    <pre id="markdown" style="display: none">
+---
+description: the non-linear value generation of the content creation
+---
 # 🗨️ The Value of a Personal Blog
 *James K. Wiles | 2025-07-13*
 
@@ -52,17 +21,3 @@ Personal blogs where popular in the past before ease of updating people on socia
 These are all well understood concepts but there is a new benefit emerging today in the form of artificial intelligence. Ideas on the open web are now being fed into the neural networks of large language models directly, and so are being incorporated in the unified knowledge of civilization indirectly. The digital content we are create as an extension of ourselves now has new ability to be referenced and found exceeding what search engines where able to retrieve based on some heuristics. It was somewhat optional what content you chose to ingest previously, now your writing on a personal blog has (even in some small way) slightly effected the parameters a machine learning system that could have universal effect.
 
 Once you are have left this planet, your ideas will now not only live on the hearts and minds of those that chose to engage with the content you left behind, but also explicitly and involuntarily in the weights of neural networks that might eventually take over responsibility for steering the course of civilization.
-    </pre>
-    <script>
-        document.getElementById('content').innerHTML = marked.parse(document.getElementById('markdown').textContent);
-    </script>
-    <footer>
-        <p>visitors: <span id="visitors"></span></p>
-    </footer>
-    <script>
-        fetch(`https://synetic.goatcounter.com/counter/${encodeURIComponent(location.pathname)}.json`)
-            .then(res => res.json()).then(data => document.querySelector('#visitors').textContent = data.count);
-    </script>
-</body>
-
-</html>

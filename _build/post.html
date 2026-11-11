@@ -1,0 +1,61 @@
+<!doctype html>
+<!--
+  The page every blog post is poured into. build.mjs fills in the marks in double braces.
+  plain-site: no CSS.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{title}} | James Wiles</title>
+<meta name="description" content="{{description}}">
+<meta name="author" content="James K. Wiles">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="{{url}}">
+<link rel="alternate" type="text/markdown" href="{{source}}">
+<link rel="icon" href="/favicon.ico">
+
+<meta property="og:site_name" content="James Wiles Blog">
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{title}}">
+<meta property="og:description" content="{{description}}">
+<meta property="og:url" content="{{url}}">
+<meta property="og:image" content="{{image}}">
+<meta property="article:published_time" content="{{date}}">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@_jameswiles">
+
+<script data-goatcounter="https://synetic.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+
+<table width="100%" cellpadding="0" cellspacing="0" role="presentation"><tr><td></td><td width="720">
+
+<p>← <a href="/">James Wiles Blog</a></p>
+
+<hr noshade size="1">
+
+<article>
+{{content}}
+</article>
+
+<hr noshade size="1">
+
+<p><small><a href="{{source}}">Markdown source</a> ・ ▲ <a href="#">top</a><span id="count"></span></small></p>
+
+</td><td></td></tr></table>
+
+<script type="module">
+const count = document.getElementById('count')
+count.textContent = ' ・ visitors: …'
+try {
+  const response = await fetch(`https://synetic.goatcounter.com/counter/${encodeURIComponent(location.pathname)}.json`)
+  if (!response.ok) throw new Error(response.status)
+  count.textContent = ` ・ visitors: ${(await response.json()).count}`
+} catch {
+  count.textContent = ' ・ visitors: unavailable'
+}
+</script>
+
+</body>
+</html>

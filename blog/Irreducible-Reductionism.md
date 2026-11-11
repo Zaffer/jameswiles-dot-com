@@ -1,39 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="James Wiles personal website - blog, experiments, research, and links">
-    <meta name="author" content="James K. Wiles">
-
-    <meta property="og:site_name" content="James Wiles Blog">
-    <meta property="og:type" content="article" />
-
-    <meta property="og:title" content="🐦 Irreducible Reductionism">
-    <meta property="og:description" content="irreducible reductionism in the context of complex systems and emergent phenomena">
-    <meta property="og:url" content="https://jameswiles.com/blog/Irreducible-Reductionism.html">
-    <meta property="og:image" content="https://jameswiles.com/blog/images/acorn.png">
-
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:creator" content="@_jameswiles">
-    
-    <title>James Wiles Blog</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/marked@16/lib/marked.umd.min.js"></script>
-    <script data-goatcounter="https://synetic.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-</head>
-
-<body>
-    <header>
-        <nav>
-            <a href="/">James Wiles Blog</a>
-        </nav>
-    </header>
-    <main id="content"></main>
-    <pre id="markdown" style="display: none">
+---
+description: irreducible reductionism in the context of complex systems and emergent phenomena
+---
 # 🐦 Irreducible Reductionism
-*James K. Wiles | 2022-01-05 *
+*James K. Wiles | 2022-01-05*
 
 Matti Heino posted a question:
 
@@ -68,18 +37,3 @@ Given the following futuristic case: There is a single bird left on the planet a
 `for n in list(range(100)): print(f"step {n+1}")`
 
 Perhaps all problems of prediction are all just problems or irreducible complexity and the emergence hides behind the adjacent possible at an unknowable distance.
-
-    </pre>
-    <script>
-        document.getElementById('content').innerHTML = marked.parse(document.getElementById('markdown').textContent);
-    </script>
-    <footer>
-        <p>visitors: <span id="visitors"></span></p>
-    </footer>
-    <script>
-        fetch(`https://synetic.goatcounter.com/counter/${encodeURIComponent(location.pathname)}.json`)
-            .then(res => res.json()).then(data => document.querySelector('#visitors').textContent = data.count);
-    </script>
-</body>
-
-</html>

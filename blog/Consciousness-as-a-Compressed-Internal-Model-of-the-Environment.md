@@ -1,39 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="James Wiles personal website - blog, experiments, research, and links">
-    <meta name="author" content="James K. Wiles">
-
-    <meta property="og:site_name" content="James Wiles Blog">
-    <meta property="og:type" content="article" />
-
-    <meta property="og:title" content="🧠 Consciousness as a Compressed Internal Model of the Environment">
-    <meta property="og:description" content="exploring the concept of consciousness as a compressed internal model of the environment">
-    <meta property="og:url" content="https://jameswiles.com/blog/Consciousness-as-a-Compressed-Internal-Model-of-the-Environment.html">
-    <meta property="og:image" content="https://jameswiles.com/blog/images/acorn.png">
-
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:creator" content="@_jameswiles">
-    
-    <title>James Wiles Blog</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/marked@16/lib/marked.umd.min.js"></script>
-    <script data-goatcounter="https://synetic.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-</head>
-
-<body>
-    <header>
-        <nav>
-            <a href="/">James Wiles Blog</a>
-        </nav>
-    </header>
-    <main id="content"></main>
-    <pre id="markdown" style="display: none">
+---
+description: exploring the concept of consciousness as a compressed internal model of the environment
+---
 # 🧠 Consciousness as a Compressed Internal Model of the Environment
-*James K. Wiles | 2021-04-07 (updated 2024-06-23))*
+*James K. Wiles | 2021-04-07 (updated 2024-06-23)*
 
 >"So it's compressing all the time the stuff that frequently appears. There is one thing, that appears all the time when the agent is interacting with its environment which is the agent itself. So just for data compression reasons it is extremely natural for this recurrent network to come up with little subnetworks that stand for the properties of the agent ... So just as a side effect of data compression during problem solving you have internal self models. Now you can use this model of the world to plan your future... Whenever it wakes up these little subnetworks that stand for itself then it is thinking about itself and it is exploring mentally the consequences of its own actions and now you tell me what is still missing in the gap to consciousness." - Juergen Schmidhuber
 
@@ -84,18 +53,3 @@ Further reading:
 Bertschinger, Nils & Olbrich, Eckehard & ay, Nur. (2006). Information and closure in systems theory. German Workshop on Artificial Life <7, Jena, July 26 - 28, 2006>: Explorations in the complexity of possible life, 9-19 (2006). 
 
 Chang AYC, Biehl M, Yu Y and Kanai R (2020) Information Closure Theory of Consciousness. _Front. Psychol._ 11:1504. doi: 10.3389/fpsyg.2020.01504
-
-    </pre>
-    <script>
-        document.getElementById('content').innerHTML = marked.parse(document.getElementById('markdown').textContent);
-    </script>
-    <footer>
-        <p>visitors: <span id="visitors"></span></p>
-    </footer>
-    <script>
-        fetch(`https://synetic.goatcounter.com/counter/${encodeURIComponent(location.pathname)}.json`)
-            .then(res => res.json()).then(data => document.querySelector('#visitors').textContent = data.count);
-    </script>
-</body>
-
-</html>
