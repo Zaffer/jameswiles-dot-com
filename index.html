@@ -15,6 +15,7 @@
 <link rel="icon" href="/favicon.ico">
 
 <meta property="og:site_name" content="James Wiles">
+<meta property="og:locale" content="en_GB">
 <meta property="og:type" content="website">
 <meta property="og:title" content="James Wiles">
 <meta property="og:description" content="social links, blog posts, software experiments">
@@ -22,16 +23,27 @@
 <meta property="og:image" content="https://jameswiles.com/blog/images/acorn.png">
 <meta property="og:image:width" content="795">
 <meta property="og:image:height" content="795">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:creator" content="@_jameswiles">
+<meta property="og:image:alt" content="Seven white dots on black: the acorn pattern from Conway's Game of Life">
 
-<script data-goatcounter="https://synetic.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script data-goatcounter="https://jameswiles.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 
-<h1>James Wiles</h1>
+<table width="100%" cellpadding="0" cellspacing="0" role="presentation"><tr><td></td><td width="720">
 
-<h2>social links</h2>
+<header>
+<center>
+<h1>James Wiles</h1>
+<i>Welcome to my website!</i>
+<p>[ <a href="#links">links</a> ]
+  [ <a href="#applications">applications</a> ]
+  [ <a href="#experiments">experiments</a> ]
+  [ <a href="#blog">posts</a> ]</p>
+</center>
+
+</header>
+
+<h2 id="links">social links</h2>
 
 <p>
 linkedin: <a href="https://www.linkedin.com/in/jameswiles/">jameswiles</a><br>
@@ -41,38 +53,39 @@ youtube: <a href="https://www.youtube.com/c/JamesWiles">@jameswiles</a><br>
 research: <a href="https://orcid.org/0009-0001-8125-9211">James K. Wiles</a>
 </p>
 
-<h2>blog posts</h2>
+<h2 id="applications">web applications</h2>
+
+<p>
+<a href="https://zaffer.github.io/plaint/">Plaint - a plain painting web app</a>
+</p>
+
+<h2 id="experiments">software experiments</h2>
+
+<p>
+<a href="/experiments/neural/nn.html">neural network visualisation</a><br>
+<a href="/experiments/polytopy/poly.html">polytope activation lens</a><br>
+<a href="/experiments/game/RulialSpace.html">rulial space game</a><br>
+<a href="https://zaffer.github.io/numerai-visualiser/">numerai dataset visualiser</a><br>
+<a href="/experiments/u-net/index.html">convolutional U-net</a>
+</p>
+
+<h2 id="blog">blog posts</h2>
 
 <p>
 {{posts}}
 </p>
 
-<h2>software experiments</h2>
+<footer>
+<hr>
 
-<p>
-<a href="https://zaffer.github.io/plaint/">Plaint - a plain painting web app</a><br>
-<a href="/experiments/neural/nn.html">neural network visualisation</a><br>
-<a href="/experiments/polytopy/poly.html">polytope activation lens</a><br>
-<a href="/experiments/game/RulialSpace.html">rulial space game</a><br>
-<a href="/experiments/numerai/index.html">numerai dataset visualiser</a><br>
-<a href="/experiments/u-net/index.html">convolutional U-net</a>
-</p>
+<p><small>Last updated {{updated}} ・ visitors: <span id="visitors">…</span> ・ ▲ <a href="#">top</a></small></p>
+</footer>
 
-<hr noshade size="1">
-
-<p><small>Last updated {{updated}} ・ ▲ <a href="#">top</a><span id="count"></span></small></p>
+</td><td></td></tr></table>
 
 <script type="module">
-const count = document.getElementById('count')
-count.textContent = ' ・ visitors: …'
-try {
-  const response = await fetch(`https://synetic.goatcounter.com/counter/${encodeURIComponent(location.pathname)}.json`)
-  if (!response.ok) throw new Error(response.status)
-  const data = await response.json()
-  count.textContent = ` ・ visitors: ${data.count}, unique: ${data.count_unique}`
-} catch {
-  count.textContent = ' ・ visitors: unavailable'
-}
+const url = `https://jameswiles.goatcounter.com/counter/${encodeURIComponent(location.pathname)}.json`
+document.getElementById('visitors').textContent = await fetch(url).then(r => r.json()).then(d => d.count, () => 'unavailable')
 </script>
 
 </body>

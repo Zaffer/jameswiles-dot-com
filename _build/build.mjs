@@ -14,6 +14,7 @@ const OUT = path.join(ROOT, '_site')
 const SITE = 'https://' + fs.readFileSync(path.join(ROOT, 'CNAME'), 'utf8').trim()
 const AUTHOR = 'James K. Wiles'
 const DEFAULT_IMAGE = '/blog/images/acorn.png'
+const DEFAULT_IMAGE_ALT = "Seven white dots on black: the acorn pattern from Conway's Game of Life"
 const MEASURE = 720 // width of the measure table in the templates
 const MAX_WIDTH = 2 * MEASURE // an image is never shown wider than the measure; twice that stays sharp on dense screens
 const PHONE = 300 // an image inside a line of text keeps its natural size only if it fits the narrowest phone
@@ -191,6 +192,12 @@ function readPost(filename) {
   }
   const share = images.get(shareAddress)
 
+  // Its description: the alt text where the post shows the same image, else the title.
+  let shareAlt = shareAddress === DEFAULT_IMAGE ? DEFAULT_IMAGE_ALT : title
+  marked.walkTokens(tokens, token => {
+    if (token.type === 'image' && token.text && path.posix.resolve('/blog', token.href) === shareAddress) shareAlt = token.text
+  })
+
   return {
     file,
     slug,
@@ -201,6 +208,7 @@ function readPost(filename) {
     image: SITE + shareAddress,
     imageWidth: share.width,
     imageHeight: share.height,
+    imageAlt: shareAlt,
     path: `/blog/${encodeURI(slug)}.html`,
     source: `/blog/${encodeURI(name)}.md`,
   }
@@ -238,6 +246,7 @@ for (const post of posts) {
     image: post.image,
     imageWidth: post.imageWidth,
     imageHeight: post.imageHeight,
+    imageAlt: escapeHtml(post.imageAlt),
     date: post.date,
     content: post.content,
   })

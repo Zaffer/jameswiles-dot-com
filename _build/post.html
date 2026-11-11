@@ -16,6 +16,7 @@
 <link rel="icon" href="/favicon.ico">
 
 <meta property="og:site_name" content="James Wiles">
+<meta property="og:locale" content="en_GB">
 <meta property="og:type" content="article">
 <meta property="og:title" content="{{title}}">
 <meta property="og:description" content="{{description}}">
@@ -23,40 +24,36 @@
 <meta property="og:image" content="{{image}}">
 <meta property="og:image:width" content="{{imageWidth}}">
 <meta property="og:image:height" content="{{imageHeight}}">
+<meta property="og:image:alt" content="{{imageAlt}}">
 <meta property="article:published_time" content="{{date}}">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:creator" content="@_jameswiles">
 
-<script data-goatcounter="https://synetic.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script data-goatcounter="https://jameswiles.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 
 <table width="100%" cellpadding="0" cellspacing="0" role="presentation"><tr><td></td><td width="720">
 
-<p>← <a href="/">James Wiles Blog</a></p>
+<header>
+<nav><a href="/">James Wiles</a> › <a href="/#blog">blog posts</a></nav>
 
-<hr noshade size="1">
+<hr>
+</header>
 
 <article>
 {{content}}
 </article>
 
-<hr noshade size="1">
+<footer>
+<hr>
 
-<p><small><a href="{{source}}">Markdown source</a> ・ ▲ <a href="#">top</a><span id="count"></span></small></p>
+<p><small><a href="{{source}}">source</a> ・ visitors: <span id="visitors">…</span> ・ ▲ <a href="#">top</a></small></p>
+</footer>
 
 </td><td></td></tr></table>
 
 <script type="module">
-const count = document.getElementById('count')
-count.textContent = ' ・ visitors: …'
-try {
-  const response = await fetch(`https://synetic.goatcounter.com/counter/${encodeURIComponent(location.pathname)}.json`)
-  if (!response.ok) throw new Error(response.status)
-  count.textContent = ` ・ visitors: ${(await response.json()).count}`
-} catch {
-  count.textContent = ' ・ visitors: unavailable'
-}
+const url = `https://jameswiles.goatcounter.com/counter/${encodeURIComponent(location.pathname)}.json`
+document.getElementById('visitors').textContent = await fetch(url).then(r => r.json()).then(d => d.count, () => 'unavailable')
 </script>
 
 </body>
