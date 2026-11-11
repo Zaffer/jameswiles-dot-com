@@ -254,8 +254,10 @@ for (const post of posts) {
   console.log(`${post.date}  ${(Buffer.byteLength(html) / 1000).toFixed(1).padStart(5)} kB  blog/${post.slug}.html`)
 }
 
-const rows = posts.map(post => `<time datetime="${post.date}">${post.date}</time> <a href="${post.path}">${escapeHtml(post.title)}</a>`)
-const home = fill(fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8'), { posts: rows.join('<br>\n'), updated: today })
+const rows = posts.map(
+  post => `<tr valign="baseline"><td nowrap><time datetime="${post.date}">${post.date}</time>&emsp;</td><td><a href="${post.path}">${escapeHtml(post.title)}</a></td></tr>`,
+)
+const home = fill(fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8'), { posts: rows.join('\n'), updated: today })
 fs.writeFileSync(path.join(OUT, 'index.html'), home)
 
 const urls = [
